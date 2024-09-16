@@ -1,7 +1,7 @@
 import "../once-ui/styles/index.scss";
 import "../once-ui/tokens/index.scss";
 
-import { Flex } from '../once-ui/components'
+import { Flex } from '@/once-ui/components'
 import classNames from 'classnames';
 import { Source_Code_Pro } from 'next/font/google';
 

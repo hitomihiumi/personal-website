@@ -1,15 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-        remotePatterns: [
-            {
-                protocol: 'https',
-                hostname: 'api.hitomihiumi.xyz',
-                port: '',
-                pathname: '/v1/users/**',
-            },
-        ],
+    reactStrictMode: false,
+    typescript: {
+        ignoreBuildErrors: false
     },
+    swcMinify: false,
+    images: {
+        unoptimized: true
+    }
 };
 
 export default nextConfig;
