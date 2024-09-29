@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+import React, {useEffect} from 'react';
 
 import { Heading, Text, Flex, Button, Grid, Icon, InlineCode, Avatar, Background, LetterFx, SparkleFx } from '@/once-ui/components';
 import Link from 'next/link';
@@ -56,9 +57,14 @@ export interface Data {
     }
 }
 
-export default async function Home() {
-    const res = await fetch(`https://api.hitomihiumi.xyz/v1/users/991777093312585808`)
-    const data = await res.json() as Data
+export default function Home() {
+    const [data, setData] = React.useState<Data>()
+
+    useEffect(() => {
+        fetch('https://api.hitomihiumi.xyz/v1/users/991777093312585808')
+            .then(res => res.json())
+            .then(setData)
+    }, [])
 
     return (
         <Flex
@@ -88,7 +94,7 @@ export default async function Home() {
                             <Avatar
                                 size="xl"
                                 style={{zIndex: '1'}}
-                                src={data.data.avatarURL}
+                                src={data ? data.data.avatarURL : ''}
                             />
                         </Flex>
                         <Flex
