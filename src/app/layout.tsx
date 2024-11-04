@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { headers } from "next/headers";
 import { Metadata } from "next";
 
-import { baseURL, style, meta, og, schema, social } from "@/once-ui/resources/config"
+import { baseURL, style, meta, og, schema } from "@/once-ui/resources/config"
 
 import { Background, Flex } from '@/once-ui/components'
 
@@ -81,8 +81,7 @@ const schemaData = {
 	"logo": schema.logo,
 	"name": schema.name,
 	"description": schema.description,
-	"email": schema.email,
-	"sameAs": Object.values(social).filter(Boolean)
+	"email": schema.email
 };
 
 export default function RootLayout({
@@ -105,9 +104,11 @@ export default function RootLayout({
 				tertiary ? tertiary.variable : ''
 			)}>
 			<head>
+				<link rel="icon"
+					  href="/favicon.png"/>
 				<script
 					type="application/ld+json"
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+					dangerouslySetInnerHTML={{__html: JSON.stringify(schemaData)}}
 				/>
 			</head>
 			<Flex

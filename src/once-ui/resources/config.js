@@ -30,18 +30,11 @@ const og = {
 
 // default schema data
 const schema = {
-    logo: './favicon.png',
+    logo: '',
     type: 'Person',
     name: 'HitmoiHiumi',
     description: 'Just a simple personal site.',
     email: 'contact@hitomihiumi.xyz'
 }
 
-// social links
-const social = {
-    twitter: 'https://www.twitter.com/_onceui',
-    linkedin: 'https://www.linkedin.com/company/once-ui/',
-    discord: 'https://discord.com/invite/5EyAQ4eNdS'
-}
-
-export { baseURL, style, meta, og, schema, social };
+export { baseURL, style, meta, og, schema };
