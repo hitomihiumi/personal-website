@@ -1,10 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    sassOptions: {
+        compiler: "modern",
+        silenceDeprecations: ["legacy-js-api"],
+    },
     reactStrictMode: false,
     typescript: {
         ignoreBuildErrors: false
     },
-    swcMinify: false,
     images: {
         unoptimized: true
     }
