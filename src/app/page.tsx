@@ -7,9 +7,11 @@ import {
     Text,
     Flex,
     Avatar,
-    IconButton, RevealFx
+    IconButton,
+    RevealFx, Option
 } from '@/once-ui/components';
 import { Data } from '@/lib/types';
+import { ButtonMenu } from "@/components/ButtonMenu";
 
 export default function Home() {
     const [data, setData] = React.useState<Data>();
@@ -100,26 +102,43 @@ export default function Home() {
                                     icon={'github'}
                                     href={'https://github.com/hitomihiumi'}
                                     variant={'secondary'}
+                                    target={'_blank'}
                                 />
                                 <IconButton
                                     icon={'telegram'}
                                     href={'https://t.me/tutachyota'}
                                     variant={'secondary'}
+                                    target={'_blank'}
                                 />
                                 <IconButton
                                     icon={'steam'}
                                     href={'https://steamcommunity.com/id/Fan_Doctor_Who_Fan/'}
                                     variant={'secondary'}
+                                    target={'_blank'}
                                 />
                                 <IconButton
                                     icon={'youtube'}
                                     href={'https://www.youtube.com/@hitomihiumi'}
                                     variant={'secondary'}
+                                    target={'_blank'}
                                 />
                                 <IconButton
                                     icon={'discord'}
                                     href={'https://discord.com/users/991777093312585808'}
                                     variant={'secondary'}
+                                    target={'_blank'}
+                                />
+                                <ButtonMenu
+                                    icon={'search'}
+                                    dropdown={
+                                    <>
+                                       <Option
+                                            value={'avatar'}
+                                            label={'Find avatar?'}
+                                            href={'https://lens.google.com/uploadbyurl?url=' + data?.data.avatarURL}
+                                       />
+                                    </>}
+
                                 />
                             </Flex>
                         </Flex>

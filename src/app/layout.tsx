@@ -150,41 +150,37 @@ export default function RootLayout({
 			<ToastProvider>
 				<Column as="body" fillWidth  margin="0" padding="0">
 					<Background
-						position="absolute"
+						style={{zIndex: '-1'}}
+						position="fixed"
 						mask={{
-							cursor: true
+							cursor: true,
+							x: 0,
+							y: 0,
+							radius: 55
 						}}
 						dots={{
 							display: true,
 							color: "scheme-accent-600",
-							opacity: 60
+							opacity: 60,
+							size: '16',
 						}}
 					/>
-					<Column fillHeight fillWidth alignItems={'center'}>
-						<Fade
+					<Column
+						fillHeight
+						fillWidth
+						alignItems={'center'}
+						overflowY={'scroll'}
+					>
+						<Flex
 							fillWidth
-							position="absolute"
-							top="0"
-							to="bottom"
-							height={12}
-							pattern={{
-								display: true,
-								size: '2'
-							}}
-						/>
-						<Header/>
-						{children}
-						<Fade
-							fillWidth
-							position="absolute"
-							bottom="0"
-							to="top"
-							height={12}
-							pattern={{
-								display: true,
-								size: '2'
-							}}
-						/>
+							fillHeight
+							justifyContent={'center'}
+							alignItems={'center'}
+							paddingY={'xs'}
+						>
+							<Header/>
+							{children}
+						</Flex>
 					</Column>
 				</Column>
 			</ToastProvider>

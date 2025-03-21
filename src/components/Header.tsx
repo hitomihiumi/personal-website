@@ -48,16 +48,27 @@ export const Header = () => {
     return (
         <>
             <Flex
-                fitWidth
                 fitHeight
                 className={styles.position}
-                as="header"
+                as={"header"}
                 zIndex={9}
                 fillWidth
-                padding="16"
-                alignItems={'center'}
+                padding={"16"}
                 justifyContent={'center'}
             >
+                <Flex
+                    fillWidth
+                    justifyContent={'flex-start'}
+                    alignItems={'center'}
+                >
+                    <Flex
+                        paddingLeft={'40'}
+                        textVariant={"label-strong-l"}
+                        gap={"20"}
+                    >
+                        <Flex hide="s">Europe/Kiev</Flex>
+                    </Flex>
+                </Flex>
                 <Flex
                     fillWidth
                     alignItems={'center'}
@@ -103,7 +114,39 @@ export const Header = () => {
                                     </Flex>
                                 </>
                             )}
+                            {routes["/steam"] && (
+                                <>
+                                    <Flex hide={'s'}>
+                                        <ToggleButton
+                                            prefixIcon="steam"
+                                            href="/steam"
+                                            label={'Steam'}
+                                            selected={pathname === "/steam"}
+                                        />
+                                    </Flex>
+                                    <Flex show={'s'}>
+                                        <ToggleButton
+                                            prefixIcon="steam"
+                                            href="/steam"
+                                            selected={pathname === "/steam"}
+                                        />
+                                    </Flex>
+                                </>
+                            )}
                         </Flex>
+                    </Flex>
+                </Flex>
+                <Flex
+                    fillWidth
+                    justifyContent={'flex-end'}
+                    alignItems={'center'}
+                >
+                    <Flex
+                        paddingRight={"40"}
+                        textVariant={"label-strong-l"}
+                        gap={"20"}
+                    >
+                        <Flex hide="s"><TimeDisplay timeZone={`Europe/Kiev`} /></Flex>
                     </Flex>
                 </Flex>
             </Flex>

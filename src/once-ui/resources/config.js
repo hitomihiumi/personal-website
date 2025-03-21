@@ -3,6 +3,7 @@ const baseURL = "hitomihiumi.xyz";
 const routes = {
   "/": true,
   "/projects": true,
+  "/steam": true,
 }
 
 // default customization applied to the HTML in the main layout.tsx
@@ -22,23 +23,23 @@ const style = {
 // default metadata
 const meta = {
   title: "HitomiHiumi",
-  description: "Yet another developer.",
+  description: "Oh hey, this is my site, I've posted a little bit of information about myself here.",
 };
 
 // default open graph data
 const og = {
   title: "HitomiHiumi",
-  description: "Yet another developer.",
+  description: "Oh hey, this is my site, I've posted a little bit of information about myself here.",
   type: "website",
-  image: "/images/cover.jpg"
+  image: "/images/cover.png"
 };
 
 // default schema data
 const schema = {
-  logo: "/trademark/icon.png",
+  logo: "/trademark/favicon.ico",
   type: "Person",
   name: "HitomiHiumi",
-  description: "Yet another developer.",
+  description: "Oh hey, this is my site, I've posted a little bit of information about myself here.",
   email: "",
 };
 
