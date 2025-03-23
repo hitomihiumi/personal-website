@@ -67,6 +67,8 @@ export async function generateMetadata(): Promise<Metadata> {
 	return {
 		title: meta.title,
 		description: meta.description,
+		themeColor: '#ff8a8a',
+		keywords: meta.keywords,
 		openGraph: {
 			title: og.title,
 			description: og.description,
@@ -110,6 +112,13 @@ const schemaData = {
 	description: schema.description,
 	email: schema.email
 };
+
+const randomColor = () => {
+	let arr = ['brand', 'sand', 'gray', 'slate', 'red', 'orange', 'yellow', 'moss', 'green', 'emerald', 'aqua', 'cyan', 'blue', 'indigo', 'violet', 'magenta', 'pink'];
+	return arr[Math.floor(Math.random() * arr.length)];
+}
+
+const colorShift = (t = Date.now()) => Math.ceil(6 + 3 * (1 + Math.sin(t / 1000)));
 
 export default function RootLayout({
 									   children,
@@ -160,7 +169,7 @@ export default function RootLayout({
 						}}
 						dots={{
 							display: true,
-							color: "scheme-accent-600",
+							color: `scheme-${randomColor()}-${colorShift()}00`,
 							opacity: 60,
 							size: '16',
 						}}

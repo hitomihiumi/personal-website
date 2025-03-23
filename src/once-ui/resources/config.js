@@ -24,6 +24,7 @@ const style = {
 const meta = {
   title: "HitomiHiumi",
   description: "Oh hey, this is my site, I've posted a little bit of information about myself here.",
+  keywords: ["HitomiHiumi", "Hitomi", "Hiumi", "Portfolio", "Projects", "Steam", "LazyCanvas", "Canvas"],
 };
 
 // default open graph data
