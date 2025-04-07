@@ -94,8 +94,8 @@ const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
                 position="relative"
                 cursor="interactive"
                 onClick={() => window.open("https://store.steampowered.com/app/" + data.appid, "_blank")}
-                justifyContent="center"
-                alignItems="center"
+                vertical="center"
+                horizontal="center"
                 border={'neutral-strong'}
                 radius={'m'}
                 style={style}

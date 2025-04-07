@@ -27,15 +27,15 @@
 }
 
 .l-flex-show {
-    display: none;
+    display: none !important;
 }
 
 .m-flex-show {
-    display: none;
+    display: none !important;
 }
 
 .s-flex-show {
-    display: none;
+    display: none !important;
 }
 
 @media (--l) {
@@ -58,7 +58,7 @@
     .l-flex-column-reverse {
         flex-direction: column-reverse !important;
     }
-
+    
     .l-flex-row-reverse {
         flex-direction: row-reverse !important;
     }
@@ -84,7 +84,7 @@
     .m-flex-column-reverse {
         flex-direction: column-reverse !important;
     }
-
+    
     .m-flex-row-reverse {
         flex-direction: row-reverse !important;
     }
@@ -110,7 +110,7 @@
     .s-flex-column-reverse {
         flex-direction: column-reverse !important;
     }
-
+    
     .s-flex-row-reverse {
         flex-direction: row-reverse !important;
     }

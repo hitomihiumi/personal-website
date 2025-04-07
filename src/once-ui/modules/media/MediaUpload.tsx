@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef, useState, forwardRef, useEffect } from "react";
 import Compressor from "compressorjs";
 import { Flex, Icon, SmartImage, Spinner, Text } from "@/once-ui/components";
@@ -129,15 +131,14 @@ const MediaUpload = forwardRef<HTMLInputElement, MediaUploadProps>(
 
     return (
       <Flex
-        position="relative"
         transition="micro-medium"
         overflow="hidden"
         cursor="interactive"
         className={styles.container}
         aspectRatio={aspectRatio}
         fillWidth
-        justifyContent="center"
-        alignItems="center"
+        horizontal="center"
+        vertical="center"
         border="neutral-medium"
         radius="l"
         onClick={handleFileSelection}
@@ -160,7 +161,7 @@ const MediaUpload = forwardRef<HTMLInputElement, MediaUploadProps>(
                 alt="Preview of uploaded image"
               />
             ) : (
-              <Flex fill alignItems="center" justifyContent="center">
+              <Flex fill center>
                 <Icon name="plus" size="l" />
               </Flex>
             )}
@@ -174,8 +175,8 @@ const MediaUpload = forwardRef<HTMLInputElement, MediaUploadProps>(
           position="absolute"
           fill
           padding="m"
-          justifyContent="center"
-          alignItems="center"
+          horizontal="center"
+          vertical="center"
         >
           {uploading || loading ? (
             <Spinner size="l" />

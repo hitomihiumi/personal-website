@@ -1,5 +1,5 @@
 export { CodeBlock } from "./code/CodeBlock";
 export { MediaUpload } from "./media/MediaUpload";
 
-export { Header } from "./layout/Header";
-export { Sidebar } from "./layout/Sidebar";
+export { Meta } from "./seo/Meta";
+export { Schema } from "./seo/Schema";

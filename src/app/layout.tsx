@@ -5,7 +5,7 @@ import classNames from "classnames";
 import { headers } from "next/headers";
 import { Metadata } from "next";
 
-import { baseURL, style, meta, og, schema } from "@/once-ui/resources/config";
+import { baseURL, style, meta, og, schema } from "@/app/resources/config";
 
 import {
 	Background,
@@ -162,29 +162,33 @@ export default function RootLayout({
 						style={{zIndex: '-1'}}
 						position="fixed"
 						mask={{
-							cursor: true,
+							x: 50,
+							y: 0,
+							radius: 80
+						}}
+						gradient={{
+							display: true,
 							x: 0,
 							y: 0,
-							radius: 55
-						}}
-						dots={{
-							display: true,
-							color: `scheme-${randomColor()}-${colorShift()}00`,
-							opacity: 60,
-							size: '16',
+							width: 200,
+							height: 100,
+							tilt: 0,
+							opacity: 50,
+							colorStart: `scheme-${randomColor()}-${colorShift()}00`,
+							colorEnd: "page-background",
 						}}
 					/>
 					<Column
 						fillHeight
 						fillWidth
-						alignItems={'center'}
+						horizontal={'center'}
 						overflowY={'scroll'}
 					>
 						<Flex
 							fillWidth
 							fillHeight
-							justifyContent={'center'}
-							alignItems={'center'}
+							vertical={'center'}
+							horizontal={'center'}
 							paddingY={'xs'}
 						>
 							<Header/>

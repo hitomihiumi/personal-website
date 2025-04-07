@@ -5,10 +5,11 @@ import classNames from "classnames";
 import { ElementType } from "./ElementType";
 import { Flex, Icon } from ".";
 import styles from "./ToggleButton.module.scss";
+import { IconName } from "../icons";
 
 interface CommonProps {
   label?: ReactNode;
-  selected: boolean;
+  selected?: boolean;
   variant?: "ghost" | "outline";
   size?: "s" | "m" | "l";
   radius?:
@@ -21,25 +22,26 @@ interface CommonProps {
     | "top-right"
     | "bottom-right"
     | "bottom-left";
-  justifyContent?: "flex-start" | "center" | "flex-end" | "space-between";
+  justifyContent?: "start" | "center" | "end" | "space-between";
   fillWidth?: boolean;
   weight?: "default" | "strong";
   truncate?: boolean;
-  prefixIcon?: string;
-  suffixIcon?: string;
+  prefixIcon?: IconName;
+  suffixIcon?: IconName;
   className?: string;
   style?: React.CSSProperties;
   children?: ReactNode;
   href?: string;
 }
 
-export type ToggleButtonProps = CommonProps & React.ButtonHTMLAttributes<HTMLButtonElement>;
+export type ToggleButtonProps = CommonProps &
+  React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const ToggleButton = forwardRef<HTMLElement, ToggleButtonProps>(
   (
     {
       label,
-      selected,
+      selected = false,
       variant = "ghost",
       size = "m",
       radius,
@@ -55,10 +57,8 @@ const ToggleButton = forwardRef<HTMLElement, ToggleButtonProps>(
       href,
       ...props
     },
-    ref,
+    ref
   ) => {
-    const radiusSize = size === "s" || size === "m" ? "m" : "l";
-
     return (
       <ElementType
         ref={ref}
@@ -71,8 +71,8 @@ const ToggleButton = forwardRef<HTMLElement, ToggleButtonProps>(
           radius === "none"
             ? "radius-none"
             : radius
-              ? `radius-${radiusSize}-${radius}`
-              : `radius-${radiusSize}`,
+            ? `radius-${size}-${radius}`
+            : `radius-${size}`,
           "text-decoration-none",
           "button",
           "cursor-interactive",
@@ -81,30 +81,31 @@ const ToggleButton = forwardRef<HTMLElement, ToggleButtonProps>(
             ["fit-width"]: !fillWidth,
             ["justify-" + justifyContent]: justifyContent,
           },
-          className,
+          className
         )}
         style={style}
         {...props}
       >
         {prefixIcon && (
-          <Icon name={prefixIcon} size={size === "l" ? "m" : "s"} className={styles.icon} />
+          <Icon name={prefixIcon} size={size === "l" ? "s" : "xs"} />
         )}
         {(label || children) && (
           <Flex
-            padding="4"
+            fillWidth={fillWidth}
+            horizontal={justifyContent}
+            padding={size === "s" ? "2" : "4"}
             textWeight={weight}
             textSize={size === "l" ? "m" : "s"}
             className="font-label"
+            position="static"
           >
             {label || children}
           </Flex>
         )}
-        {suffixIcon && (
-          <Icon name={suffixIcon} size={size === "l" ? "m" : "s"} className={styles.icon} />
-        )}
+        {suffixIcon && <Icon name={suffixIcon} size={size === "l" ? "s" : "xs"} />}
       </ElementType>
     );
-  },
+  }
 );
 
 ToggleButton.displayName = "ToggleButton";

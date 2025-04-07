@@ -66,8 +66,8 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
             <Flex
                 maxHeight={12}
                 minHeight={12}
-                justifyContent={'center'}
-                alignItems={'center'}
+                vertical={'center'}
+                horizontal={'center'}
             >
                 <RevealFx
                     onClick={handleImageClick}
@@ -91,7 +91,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
             </Flex>
             {projects.length > 1 && (
                 <>
-                    <Flex gap="4" paddingX="s" fillWidth justifyContent="center">
+                    <Flex gap="4" paddingX="s" fillWidth vertical="center">
                         {projects.map((_, index) => (
                             <Flex
                                 key={index}

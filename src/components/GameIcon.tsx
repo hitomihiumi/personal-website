@@ -3,7 +3,7 @@
 import React, { forwardRef } from "react";
 
 import { Skeleton, Icon, Text, StatusIndicator, Flex, SmartImage } from "@/once-ui/components";
-import styles from "./SteamAvatar.module.scss";
+import styles from "./AvatarWFrame.module.scss";
 
 interface GameIconProps extends React.ComponentProps<typeof Flex> {
     size?: "xs" | "s" | "m" | "l" | "xl";
@@ -111,8 +111,8 @@ const GameIcon = forwardRef<HTMLDivElement, GameIconProps>(
                 ref={ref}
                 role="img"
                 position="relative"
-                justifyContent="center"
-                alignItems="center"
+                vertical="center"
+                horizontal="center"
                 border="neutral-strong"
                 background="surface"
                 style={style}

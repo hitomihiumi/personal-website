@@ -17,13 +17,13 @@ export interface DateRangePickerProps extends Omit<React.ComponentProps<typeof F
 }
 
 const DateRangePicker: React.FC<DateRangePickerProps> = ({
-                                                           value,
-                                                           onChange,
-                                                           minDate,
-                                                           maxDate,
-                                                           size = "m",
-                                                           ...rest
-                                                         }) => {
+  value,
+  onChange,
+  minDate,
+  maxDate,
+  size = "m",
+  ...rest
+}) => {
   const [internalValue, setInternalValue] = useState<DateRange>({
     startDate: value?.startDate || undefined,
     endDate: value?.endDate || undefined,
@@ -94,34 +94,34 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   };
 
   return (
-      <Flex gap="24" {...rest}>
-        <DatePicker
-            value={internalValue.startDate}
-            onChange={handleDateChange}
-            range={getPreviewRange() || internalValue}
-            minDate={minDate}
-            maxDate={maxDate}
-            size={size}
-            nextMonth={false}
-            currentMonth={currentMonth}
-            currentYear={currentYear}
-            onMonthChange={handleMonthChange}
-            onHover={setHoveredDate}
-        />
-        <DatePicker
-            value={internalValue.endDate}
-            onChange={handleDateChange}
-            range={getPreviewRange() || internalValue}
-            minDate={minDate}
-            maxDate={maxDate}
-            previousMonth={false}
-            size={size}
-            currentMonth={getSecondMonth().getMonth()}
-            currentYear={getSecondMonth().getFullYear()}
-            onMonthChange={handleMonthChange}
-            onHover={setHoveredDate}
-        />
-      </Flex>
+    <Flex gap="24" {...rest}>
+      <DatePicker
+        value={internalValue.startDate}
+        onChange={handleDateChange}
+        range={getPreviewRange() || internalValue}
+        minDate={minDate}
+        maxDate={maxDate}
+        size={size}
+        nextMonth={false}
+        currentMonth={currentMonth}
+        currentYear={currentYear}
+        onMonthChange={handleMonthChange}
+        onHover={setHoveredDate}
+      />
+      <DatePicker
+        value={internalValue.endDate}
+        onChange={handleDateChange}
+        range={getPreviewRange() || internalValue}
+        minDate={minDate}
+        maxDate={maxDate}
+        previousMonth={false}
+        size={size}
+        currentMonth={getSecondMonth().getMonth()}
+        currentYear={getSecondMonth().getFullYear()}
+        onMonthChange={handleMonthChange}
+        onHover={setHoveredDate}
+      />
+    </Flex>
   );
 };
 

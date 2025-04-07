@@ -42,7 +42,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                         fillWidth
                         direction={'row'}
                         gap={'s'}
-                        justifyContent={'space-between'}
+                        vertical={'space-between'}
                     >
                         <Flex
                             direction={'column'}
@@ -72,8 +72,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                     paddingX={'m'}
                     gap={'s'}
                     direction={'row'}
-                    justifyContent={'space-between'}
-                    alignItems={'center'}
+                    vertical={'space-between'}
+                    horizontal={'center'}
                     >
                     <Flex
                         gap={'s'}>
@@ -156,7 +156,7 @@ export const ProjectCardMobile: React.FC<ProjectCardProps> = ({
                         fillHeight
                         direction={'row'}
                         gap={'s'}
-                        justifyContent={'space-between'}
+                        vertical={'space-between'}
                     >
                         <Flex
                             direction={'column'}
@@ -175,7 +175,7 @@ export const ProjectCardMobile: React.FC<ProjectCardProps> = ({
                 </Flex>
                 <Flex
                     direction={'column'}
-                    justifyContent={'flex-end'}
+                    vertical={'end'}
                 >
                     <Line background={'neutral-alpha-medium'} />
                     <Flex
@@ -183,8 +183,8 @@ export const ProjectCardMobile: React.FC<ProjectCardProps> = ({
                         paddingX={'m'}
                         gap={'s'}
                         direction={'row'}
-                        justifyContent={'space-between'}
-                        alignItems={'center'}
+                        vertical={'space-between'}
+                        horizontal={'center'}
                     >
                         <Flex
                             gap={'s'}>

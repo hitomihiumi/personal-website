@@ -5,13 +5,13 @@ import React, {useEffect} from 'react';
 import {
     Heading,
     Text,
-    Flex,
-    Grid, Column, Background, Avatar, SmartImage, TiltFx, Button
+    Flex, 
+    Column, 
+    SmartImage, 
+    Button
 } from '@/once-ui/components';
-import { SteamAvatar } from "@/components/SteamAvatar";
-import { ExtendedSteamProfile, ExtendedSteamResponse, ExtendedSteamUsers, ExtendedSteamGame } from "@/lib/types";
-
-import { GameCard } from "@/components/GameCard";
+import { AvatarWFrame } from "@/components/AvatarWFrame";
+import { ExtendedSteamProfile, ExtendedSteamUsers } from "@/lib/types";
 import { BlurFlex } from "@/components/BlurFlex";
 
 export default function Home() {
@@ -28,16 +28,16 @@ export default function Home() {
             <Flex
                 paddingX={'l'}
                 direction={'column'}
-                justifyContent={'center'}
-                alignItems={'center'}
+                vertical={'center'}
+                horizontal={'center'}
                 fillWidth
                 fillHeight
             >
                 <Flex
                     fillWidth
                     fillHeight
-                    justifyContent={'center'}
-                    alignItems={'center'}
+                    vertical={'center'}
+                    horizontal={'center'}
                     direction={'column'}
                     gap={'m'}
                 >
@@ -54,7 +54,7 @@ export default function Home() {
                                     radius={'xl'}
                                     overflow={'hidden'}
                                     position="relative"
-                                    justifyContent={'center'}
+                                    vertical={'center'}
                                 >
                                     {data.background && (
                                         <SmartImage
@@ -72,12 +72,12 @@ export default function Home() {
                                         <Flex
                                             fillWidth
                                             fillHeight
-                                            alignItems={'center'}
-                                            justifyContent={'center'}
+                                            horizontal={'center'}
+                                            vertical={'center'}
                                             gap={'24'}
                                             padding={'s'}
                                         >
-                                            <SteamAvatar
+                                            <AvatarWFrame
                                                 size={'xl'}
                                                 src={data ? data.avatarfull : ''}
                                                 frame={data ? data.frame : ''}
@@ -86,7 +86,7 @@ export default function Home() {
                                                 fillHeight
                                                 gap="12"
                                                 direction={'column'}
-                                                alignItems={'left'}
+                                                horizontal={'start'}
                                             >
                                                 <Flex
                                                     direction={'column'}
@@ -104,7 +104,7 @@ export default function Home() {
                                                     <Flex
                                                         fillWidth
                                                         gap={'4'}
-                                                        alignItems={'center'}
+                                                        horizontal={'center'}
                                                         direction={'column'}
                                                     >
                                                         {data?.locstatecode && (
@@ -158,7 +158,7 @@ export default function Home() {
                                     radius={'xl'}
                                     overflow={'hidden'}
                                     position="relative"
-                                    justifyContent={'center'}
+                                    vertical={'center'}
                                 >
                                     {data.background && (
                                         <SmartImage
@@ -176,8 +176,8 @@ export default function Home() {
                                         flexProps={{
                                             fillWidth: true,
                                             fillHeight: true,
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
+                                            horizontal: 'center',
+                                            vertical: 'center',
                                             gap: '12',
                                             padding: 's',
                                             direction: 'column'
@@ -186,13 +186,13 @@ export default function Home() {
                                         <Flex
                                             fillWidth
                                             fillHeight
-                                            alignItems={'center'}
-                                            justifyContent={'center'}
+                                            horizontal={'center'}
+                                            vertical={'center'}
                                             gap={'12'}
                                             padding={'s'}
                                             direction={'column'}
                                         >
-                                            <SteamAvatar
+                                            <AvatarWFrame
                                                 size={'xl'}
                                                 src={data ? data.avatarfull : ''}
                                                 frame={data ? data.frame : ''}
@@ -201,7 +201,7 @@ export default function Home() {
                                                 fillHeight
                                                 gap="12"
                                                 direction={'column'}
-                                                alignItems={'left'}
+                                                horizontal={'start'}
                                             >
                                                 <Flex
                                                     direction={'column'}
@@ -217,8 +217,8 @@ export default function Home() {
                                                     fillWidth
                                                     fillHeight
                                                     gap={'4'}
-                                                    alignItems={'center'}
-                                                    justifyContent={'flex-end'}
+                                                    horizontal={'center'}
+                                                    vertical={'end'}
                                                     direction={'column'}
                                                 >
                                                     {data?.locstatecode && (
@@ -346,15 +346,15 @@ export default function Home() {
                             <Column
                                 fillWidth
                                 fillHeight
-                                alignItems={'center'}
-                                justifyContent={'center'}
+                                horizontal={'center'}
+                                vertical={'center'}
                                 gap={'32'}
                             >
                                     <Flex
                                         fillWidth
                                         gap={'24'}
-                                        alignItems={'center'}
-                                        justifyContent={'center'}
+                                        horizontal={'center'}
+                                        vertical={'center'}
                                         direction={'column'}
                                     >
                                         <Text
@@ -434,15 +434,15 @@ export default function Home() {
                                 <Column
                                     fillWidth
                                     fillHeight
-                                    alignItems={'center'}
-                                    justifyContent={'center'}
+                                    horizontal={'center'}
+                                    vertical={'center'}
                                     gap={'32'}
                                 >
                                     <Flex
                                         fillWidth
                                         gap={'24'}
-                                        alignItems={'center'}
-                                        justifyContent={'center'}
+                                        horizontal={'center'}
+                                        vertical={'center'}
                                         direction={'column'}
                                     >
                                         <Text
@@ -483,7 +483,7 @@ export default function Home() {
                                 radius={'xl'}
                                 overflow={'hidden'}
                                 position="relative"
-                                justifyContent={'center'}
+                                vertical={'center'}
                             >
                                 {data.background && (
                                     <SmartImage
@@ -501,8 +501,8 @@ export default function Home() {
                                     <Flex
                                         fillWidth
                                         fillHeight
-                                        alignItems={'center'}
-                                        justifyContent={'center'}
+                                        horizontal={'center'}
+                                        vertical={'center'}
                                         gap={'24'}
                                         padding={'s'}
                                     >
@@ -515,7 +515,7 @@ export default function Home() {
                                             fillHeight
                                             gap="12"
                                             direction={'column'}
-                                            alignItems={'left'}
+                                            horizontal={'left'}
                                         >
                                             <Flex
                                                 direction={'column'}
@@ -533,7 +533,7 @@ export default function Home() {
                                                 <Flex
                                                     fillWidth
                                                     gap={'4'}
-                                                    alignItems={'center'}
+                                                    horizontal={'center'}
                                                     direction={'column'}
                                                 >
                                                     {data?.locstatecode && (

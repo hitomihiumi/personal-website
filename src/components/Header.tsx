@@ -3,11 +3,10 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { Flex, ToggleButton } from "@/once-ui/components";
-import { Line } from "@/components/Line";
+import { Flex, ToggleButton, Line } from "@/once-ui/components";
 import styles from "@/components/Header.module.scss";
 
-import { routes } from "@/once-ui/resources/config";
+import { routes } from "@/app/resources/config";
 
 type TimeDisplayProps = {
     timeZone: string;
@@ -54,12 +53,12 @@ export const Header = () => {
                 zIndex={9}
                 fillWidth
                 padding={"16"}
-                justifyContent={'center'}
+                vertical={'center'}
             >
                 <Flex
                     fillWidth
-                    justifyContent={'flex-start'}
-                    alignItems={'center'}
+                    horizontal={'start'}
+                    vertical={'center'}
                 >
                     <Flex
                         paddingLeft={'40'}
@@ -71,8 +70,8 @@ export const Header = () => {
                 </Flex>
                 <Flex
                     fillWidth
-                    alignItems={'center'}
-                    justifyContent={'center'}
+                    vertical={'center'}
+                    horizontal={'center'}
                 >
                     <Flex
                         background="surface"
@@ -80,20 +79,19 @@ export const Header = () => {
                         radius="m-4"
                         shadow="l"
                         padding="4"
-                        alignItems={'center'}
+                        vertical={'center'}
                     >
                         <Flex
                             gap="4"
-                            justifyContent={'center'}
+                            horizontal={'center'}
                             textVariant="body-default-s">
                             {routes["/"] && (
                                 <ToggleButton prefixIcon="person" href="/" selected={pathname === "/"} />
                             )}
                             <Line
-                                vertical
-                                fillWidth
-                                size={2}
-                                maxHeight="24"
+                                vert={true}
+                                height={2}
+                                background="neutral-alpha-medium"
                             />
                             {routes["/projects"] && (
                                 <>
@@ -138,8 +136,8 @@ export const Header = () => {
                 </Flex>
                 <Flex
                     fillWidth
-                    justifyContent={'flex-end'}
-                    alignItems={'center'}
+                    horizontal={'end'}
+                    vertical={'center'}
                 >
                     <Flex
                         paddingRight={"40"}

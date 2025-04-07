@@ -8,6 +8,7 @@ interface DateInputProps extends Omit<React.ComponentProps<typeof Input>, "onCha
   label: string;
   value?: Date;
   onChange?: (date: Date) => void;
+  minHeight?: number;
   className?: string;
   style?: React.CSSProperties;
   timePicker?: boolean;
@@ -29,16 +30,17 @@ const formatDate = (date: Date, timePicker: boolean) => {
 };
 
 export const DateInput: React.FC<DateInputProps> = ({
-                                                      id,
-                                                      label,
-                                                      value,
-                                                      onChange,
-                                                      error,
-                                                      className,
-                                                      style,
-                                                      timePicker = false,
-                                                      ...rest
-                                                    }) => {
+  id,
+  label,
+  value,
+  onChange,
+  error,
+  minHeight,
+  className,
+  style,
+  timePicker = false,
+  ...rest
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState(value ? formatDate(value, timePicker) : "");
 
@@ -49,14 +51,14 @@ export const DateInput: React.FC<DateInputProps> = ({
   }, [value, timePicker]);
 
   const handleDateChange = useCallback(
-      (date: Date) => {
-        setInputValue(formatDate(date, timePicker));
-        onChange?.(date);
-        if (!timePicker) {
-          setIsOpen(false);
-        }
-      },
-      [onChange, timePicker],
+    (date: Date) => {
+      setInputValue(formatDate(date, timePicker));
+      onChange?.(date);
+      if (!timePicker) {
+        setIsOpen(false);
+      }
+    },
+    [onChange, timePicker],
   );
 
   const handleInputClick = useCallback(() => {
@@ -64,36 +66,37 @@ export const DateInput: React.FC<DateInputProps> = ({
   }, []);
 
   const trigger = (
-      <Input
-          className="cursor-interactive"
-          style={{
-            textOverflow: "ellipsis",
-          }}
-          id={id}
-          label={label}
-          value={inputValue}
-          error={error}
-          readOnly
-          onClick={handleInputClick}
-          {...rest}
-      />
+    <Input
+      className="cursor-interactive"
+      style={{
+        textOverflow: "ellipsis",
+      }}
+      id={id}
+      label={label}
+      value={inputValue}
+      error={error}
+      readOnly
+      onClick={handleInputClick}
+      {...rest}
+    />
   );
 
   const dropdown = (
-      <Flex padding="20">
-        <DatePicker value={value} onChange={handleDateChange} timePicker={timePicker} />
-      </Flex>
+    <Flex padding="20">
+      <DatePicker value={value} onChange={handleDateChange} timePicker={timePicker} />
+    </Flex>
   );
 
   return (
-      <DropdownWrapper
-          fillWidth
-          trigger={trigger}
-          dropdown={dropdown}
-          isOpen={isOpen}
-          onOpenChange={setIsOpen}
-          className={className}
-          style={{ ...style }}
-      />
+    <DropdownWrapper
+      fillWidth
+      trigger={trigger}
+      minHeight={minHeight}
+      dropdown={dropdown}
+      isOpen={isOpen}
+      onOpenChange={setIsOpen}
+      className={className}
+      style={{ ...style }}
+    />
   );
 };

@@ -66,8 +66,8 @@ export default function Home() {
                 fillHeight
                 paddingX={'l'}
                 direction={'column'}
-                alignItems={'center'}
-                justifyContent={'center'}>
+                horizontal={'center'}
+                vertical={'center'}>
                 <Flex
                     hide={'m' || 's'}
                     direction={'column'}
@@ -76,8 +76,8 @@ export default function Home() {
                     <Flex
                         fillWidth
                         paddingX={'m'}
-                        alignItems={'center'}
-                        justifyContent={'center'}
+                        horizontal={'center'}
+                        vertical={'center'}
                         gap={'m'}
                         direction={'column'}
                     >
@@ -109,15 +109,15 @@ export default function Home() {
                     show={'m'}
                     hide={'s'}
                     direction={'column'}
-                    alignItems={'center'}
+                    horizontal={'center'}
                     fillWidth
                     gap={'l'}
                 >
                     <Flex
                         fillWidth
                         paddingX={'m'}
-                        alignItems={'center'}
-                        justifyContent={'center'}
+                        horizontal={'center'}
+                        vertical={'center'}
                         gap={'m'}
                         direction={'column'}
                     >
@@ -132,7 +132,7 @@ export default function Home() {
                     </Flex>
                     <Flex
                         direction={'column'}
-                        alignItems={'center'}
+                        horizontal={'center'}
                         gap={'l'}>
                         <ProjectCarousel
                             mobile={false}
@@ -143,15 +143,15 @@ export default function Home() {
                 <Flex
                     show={'s'}
                     direction={'column'}
-                    alignItems={'center'}
+                    horizontal={'center'}
                     fillWidth
                     gap={'l'}
                 >
                     <Flex
                         fillWidth
                         paddingX={'m'}
-                        alignItems={'center'}
-                        justifyContent={'center'}
+                        horizontal={'center'}
+                        vertical={'center'}
                         gap={'m'}
                         direction={'column'}
                     >
@@ -166,7 +166,7 @@ export default function Home() {
                     </Flex>
                     <Flex
                         direction={'column'}
-                        alignItems={'center'}
+                        horizontal={'center'}
                         gap={'l'}>
                         <ProjectCarousel
                             mobile={true}

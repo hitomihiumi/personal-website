@@ -17,7 +17,7 @@ import styles from "./Dialog.module.scss";
 interface DialogProps extends Omit<React.ComponentProps<typeof Flex>, "title"> {
   isOpen: boolean;
   onClose: () => void;
-  title: ReactNode;
+  title: ReactNode | string;
   description?: ReactNode;
   children: ReactNode;
   footer?: ReactNode;
@@ -212,7 +212,7 @@ const Dialog: React.FC<DialogProps> = forwardRef<HTMLDivElement, DialogProps>(
         transition="macro-medium"
         background="overlay"
         position="fixed"
-        zIndex={base ? 9 : 10}
+        zIndex={base ? 8 : 9}
         top="0"
         left="0"
         right="0"
@@ -220,8 +220,7 @@ const Dialog: React.FC<DialogProps> = forwardRef<HTMLDivElement, DialogProps>(
         className={classNames(styles.overlay, {
           [styles.open]: isAnimating,
         })}
-        justifyContent="center"
-        alignItems="center"
+        center
         padding="l"
         role="dialog"
         aria-modal="true"
@@ -229,8 +228,7 @@ const Dialog: React.FC<DialogProps> = forwardRef<HTMLDivElement, DialogProps>(
       >
         <Flex
           fill
-          justifyContent="center"
-          alignItems="center"
+          center
           transition="macro-medium"
           style={{
             transform: base ? "scale(0.94) translateY(-1.25rem)" : "",
@@ -284,10 +282,14 @@ const Dialog: React.FC<DialogProps> = forwardRef<HTMLDivElement, DialogProps>(
               paddingBottom="s"
               gap="4"
             >
-              <Flex fillWidth justifyContent="space-between" gap="8">
-                <Heading id="dialog-title" variant="heading-strong-l">
-                  {title}
-                </Heading>
+              <Flex fillWidth horizontal="space-between" gap="8">
+                {typeof title === "string" ? (
+                  <Heading id="dialog-title" variant="heading-strong-l">
+                    {title}
+                  </Heading>
+                ) : (
+                  title
+                )}
                 <IconButton
                   icon="close"
                   size="m"
@@ -313,13 +315,7 @@ const Dialog: React.FC<DialogProps> = forwardRef<HTMLDivElement, DialogProps>(
               {children}
             </Flex>
             {footer && (
-              <Flex
-                borderTop="neutral-medium"
-                as="footer"
-                justifyContent="flex-end"
-                padding="12"
-                gap="8"
-              >
+              <Flex borderTop="neutral-medium" as="footer" horizontal="end" padding="12" gap="8">
                 {footer}
               </Flex>
             )}
