@@ -16,8 +16,8 @@ const Sidebar: React.FC = ({}) => {
       background="page"
       border="neutral-weak"
       radius="l"
-      justifyContent="flex-start"
-      alignItems="flex-start"
+      vertical="start"
+      horizontal="start"
     >
       <Column fill paddingX="xs" gap="m">
         <Column fillWidth gap="4">
@@ -29,18 +29,18 @@ const Sidebar: React.FC = ({}) => {
           >
             Dashboard
           </Text>
-          <ToggleButton fillWidth justifyContent="flex-start" selected={true}>
-            <Row padding="4" alignItems="center" gap="12" textVariant="label-default-s">
+          <ToggleButton fillWidth justifyContent="start" selected={true}>
+            <Row padding="4" horizontal="center" gap="12" textVariant="label-default-s">
               <Icon name="PiHouseDuotone" onBackground="neutral-weak" size="xs" />
               Home
             </Row>
           </ToggleButton>
           <ToggleButton
             fillWidth
-            justifyContent="flex-start"
+            justifyContent="start"
             selected={pathname === "analytics"}
           >
-            <Row padding="4" alignItems="center" gap="12" textVariant="label-default-s">
+            <Row padding="4" horizontal="center" gap="12" textVariant="label-default-s">
               <Icon name="PiTrendUpDuotone" onBackground="neutral-weak" size="xs" />
               Analytics
             </Row>
@@ -50,10 +50,10 @@ const Sidebar: React.FC = ({}) => {
               position: "relative",
             }}
             fillWidth
-            justifyContent="flex-start"
+            justifyContent="start"
             selected={pathname === "reports"}
           >
-            <Row padding="4" alignItems="center" gap="12" textVariant="label-default-s">
+            <Row padding="4" horizontal="center" gap="12" textVariant="label-default-s">
               <Icon name="PiNotebookDuotone" onBackground="neutral-weak" size="xs" />
               Reports
               <Tag
@@ -75,30 +75,30 @@ const Sidebar: React.FC = ({}) => {
           </Text>
           <ToggleButton
             fillWidth
-            justifyContent="flex-start"
+            justifyContent="start"
             selected={pathname === "users"}
           >
-            <Row padding="4" gap="12" alignItems="center" textVariant="label-default-s">
+            <Row padding="4" gap="12" horizontal="center" textVariant="label-default-s">
             <Line width="16"/>
               Users
             </Row>
           </ToggleButton>
           <ToggleButton
             fillWidth
-            justifyContent="flex-start"
+            justifyContent="start"
             selected={pathname === "roles"}
           >
-            <Row padding="4" alignItems="center" gap="12" textVariant="label-default-s">
+            <Row padding="4" horizontal="center" gap="12" textVariant="label-default-s">
             <Line width="16"/>
               Roles
             </Row>
           </ToggleButton>
           <ToggleButton
             fillWidth
-            justifyContent="flex-start"
+            justifyContent="start"
             selected={pathname === "permissions"}
           >
-            <Row padding="4" gap="12" alignItems="center" textVariant="label-default-s">
+            <Row padding="4" gap="12" horizontal="center" textVariant="label-default-s">
             <Line width="16"/>
               Permissions
             </Row>
@@ -110,8 +110,8 @@ const Sidebar: React.FC = ({}) => {
         <Column fill gap="4">
           <Row
             fillWidth
-            justifyContent="space-between"
-            alignItems="center"
+            vertical="space-between"
+            horizontal="center"
             paddingY="8"
             paddingX="16"
           >
@@ -122,20 +122,20 @@ const Sidebar: React.FC = ({}) => {
           </Row>
           <ToggleButton
             fillWidth
-            justifyContent="flex-start"
+            justifyContent="start"
             selected={pathname === "overview"}
           >
-            <Row padding="4" gap="12" alignItems="center" textVariant="label-default-s">
+            <Row padding="4" gap="12" horizontal="center" textVariant="label-default-s">
             <Line width="16"/>
               Overview
             </Row>
           </ToggleButton>
           <ToggleButton
             fillWidth
-            justifyContent="flex-start"
+            justifyContent="start"
             selected={pathname === "projects"}
           >
-            <Row padding="4" gap="12" alignItems="center" textVariant="label-default-s">
+            <Row padding="4" gap="12" horizontal="center" textVariant="label-default-s">
               <Line width="16"/>
               My projects
             </Row>

@@ -85,6 +85,8 @@ const AvatarWFrame = forwardRef<HTMLDivElement, AvatarWFrameProps>(
                             maxHeight={'160'}
                             sizes={`${sizeMapping[size]}px`}
                             className={styles.image}
+                            //@ts-ignore
+                            aspectRatio={'1/1'}
                             {...rest}
                         />
                         {frame && (

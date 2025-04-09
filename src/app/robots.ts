@@ -1,4 +1,4 @@
-import { baseURL } from "@/once-ui/resources/config";
+import { baseURL } from "@/app/resources/config";
 
 export default function robots() {
     return {

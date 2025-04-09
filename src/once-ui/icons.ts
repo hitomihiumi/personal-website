@@ -36,7 +36,7 @@ import {
     HiOutlineDocumentText,
     HiOutlineDocument,
     HiDocument,
-    HiDocumentDuplicate,
+    HiDocumentDuplicate, HiOutlineComputerDesktop,
 } from "react-icons/hi2";
 
 import {
@@ -66,12 +66,14 @@ import {
 } from "react-icons/vsc"
 
 import { IoGridOutline, IoSend } from "react-icons/io5";
+import { LuChevronsLeftRight } from "react-icons/lu";
 
 export const iconLibrary: Record<string, IconType> = {
     chevronUp: HiChevronUp,
     chevronDown: HiChevronDown,
     chevronRight: HiChevronRight,
     chevronLeft: HiChevronLeft,
+    chevronsLeftRight: LuChevronsLeftRight,
     refresh: HiOutlineArrowPath,
     check: HiCheck,
     light: HiOutlineSun,
@@ -99,6 +101,7 @@ export const iconLibrary: Record<string, IconType> = {
     visa: RiVisaLine,
     security: HiOutlineShieldCheck,
     sparkle: HiOutlineSparkles,
+    computer: HiOutlineComputerDesktop,
     documentText: HiOutlineDocumentText,
     document: HiOutlineDocument,
     documentAlt: HiDocument,
@@ -120,3 +123,6 @@ export const iconLibrary: Record<string, IconType> = {
     npm: FaNpm,
     send: RiSendPlaneFill
 };
+
+export type IconLibrary = typeof iconLibrary;
+export type IconName = keyof IconLibrary;

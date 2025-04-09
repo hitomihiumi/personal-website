@@ -9,22 +9,19 @@ import { baseURL, style, meta, og, schema } from "@/app/resources/config";
 
 import {
 	Background,
-	Button,
 	Column,
-	Fade,
-	Flex, Heading,
-	IconButton,
-	Logo,
-	Row, SegmentedControl,
-	ToastProvider
+	Flex,
+	ToastProvider,
+	ThemeProvider,
 } from "@/once-ui/components";
 import { Header } from "@/components/Header"
 import { Roboto_Mono } from "next/font/google";
 
+import { Meta, Schema } from "@/once-ui/modules";
+
 import { Raleway } from 'next/font/google';
 import { Sora } from 'next/font/google';
 import React from "react";
-import {Data} from "@/lib/types";
 
 const primary = Raleway({
 	variable: '--font-primary',
@@ -64,54 +61,20 @@ export async function generateMetadata(): Promise<Metadata> {
 	const host = (await headers()).get("host");
 	const metadataBase = host ? new URL(`https://${host}`) : undefined;
 
-	return {
+	Meta.generate({
 		title: meta.title,
 		description: meta.description,
-		themeColor: '#ff8a8a',
-		keywords: meta.keywords,
-		openGraph: {
-			title: og.title,
-			description: og.description,
-			url: "https://" + baseURL,
-			images: [
-				{
-					url: og.image,
-					alt: og.title,
-				},
-			],
-			type: og.type as
-				| "website"
-				| "article"
-				| "book"
-				| "profile"
-				| "music.song"
-				| "music.album"
-				| "music.playlist"
-				| "music.radio_station"
-				| "video.movie"
-				| "video.episode"
-				| "video.tv_show"
-				| "video.other",
-		},
-		twitter: {
-			card: 'summary_large_image',
-			title: og.title,
-			description: og.description,
-			images: [og.image],
-		},
+		type: 'website',
+		baseURL: baseURL,
+		path: '/',
+		image: og.image
+	})
+
+	return {
+
 		metadataBase,
 	};
 }
-
-const schemaData = {
-	"@context": "https://schema.org",
-	"@type": schema.type,
-	url: "https://" + baseURL,
-	logo: schema.logo,
-	name: schema.name,
-	description: schema.description,
-	email: schema.email
-};
 
 const randomColor = () => {
 	let arr = ['brand', 'sand', 'gray', 'slate', 'red', 'orange', 'yellow', 'moss', 'green', 'emerald', 'aqua', 'cyan', 'blue', 'indigo', 'violet', 'magenta', 'pink'];
@@ -148,55 +111,80 @@ export default function RootLayout({
 				tertiary ? tertiary.variable : "",
 			)}
 		>
+			<Schema
+				as="website"
+				title={schema.name}
+				description={schema.description}
+				baseURL={baseURL}
+				path="/"
+				image={schema.logo}
+			/>
 			<head>
 				<script
-					type="application/ld+json"
 					dangerouslySetInnerHTML={{
-						__html: JSON.stringify(schemaData),
+						__html: `
+              (function() {
+                try {
+                  const theme = localStorage.getItem('theme') || 'system';
+                  const root = document.documentElement;
+                  if (theme === 'system') {
+                    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    root.setAttribute('data-theme', isDark ? 'dark' : 'light');
+                  } else {
+                    root.setAttribute('data-theme', theme);
+                  }
+                } catch (e) {
+                  document.documentElement.setAttribute('data-theme', 'dark');
+                }
+              })();
+            `,
 					}}
 				/>
 			</head>
-			<ToastProvider>
-				<Column as="body" fillWidth  margin="0" padding="0">
-					<Background
-						style={{zIndex: '-1'}}
-						position="fixed"
-						mask={{
-							x: 50,
-							y: 0,
-							radius: 80
-						}}
-						gradient={{
-							display: true,
-							x: 0,
-							y: 0,
-							width: 200,
-							height: 100,
-							tilt: 0,
-							opacity: 50,
-							colorStart: `scheme-${randomColor()}-${colorShift()}00`,
-							colorEnd: "page-background",
-						}}
-					/>
-					<Column
-						fillHeight
-						fillWidth
-						horizontal={'center'}
-						overflowY={'scroll'}
-					>
-						<Flex
-							fillWidth
+			<ThemeProvider>
+				<ToastProvider>
+					<Column as="body" fillWidth  margin="0" padding="0">
+						<Background
+							style={{zIndex: '-1'}}
+							position="fixed"
+							mask={{
+								x: 50,
+								y: 0,
+								radius: 80
+							}}
+							gradient={{
+								display: true,
+								x: 0,
+								y: 0,
+								width: 200,
+								height: 100,
+								tilt: 0,
+								opacity: 50,
+								colorStart: `scheme-${randomColor()}-${colorShift()}00`,
+								colorEnd: "page-background",
+							}}
+						/>
+						<Column
 							fillHeight
-							vertical={'center'}
+							fillWidth
 							horizontal={'center'}
-							paddingY={'xs'}
+							overflowY={'scroll'}
 						>
-							<Header/>
-							{children}
-						</Flex>
+							<Flex
+								fillWidth
+								fillHeight
+								vertical={'center'}
+								horizontal={'center'}
+								paddingY={'xs'}
+								direction={'column'}
+							>
+								<Header/>
+								{children}
+							</Flex>
+						</Column>
 					</Column>
-				</Column>
-			</ToastProvider>
+				</ToastProvider>
+			</ThemeProvider>
 		</Flex>
 	);
 }

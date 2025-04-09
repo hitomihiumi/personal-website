@@ -27,7 +27,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 maxWidth={36}
                 maxHeight={16}
                 minWidth={36}
-                fillHeight
+                fitHeight
                 radius={'l-4'}
                 background={'overlay'}
                 border={'neutral-alpha-medium'}
@@ -72,8 +72,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                     paddingX={'m'}
                     gap={'s'}
                     direction={'row'}
-                    vertical={'space-between'}
-                    horizontal={'center'}
+                    horizontal={'space-between'}
+                    vertical={'center'}
                     >
                     <Flex
                         gap={'s'}>
@@ -183,8 +183,8 @@ export const ProjectCardMobile: React.FC<ProjectCardProps> = ({
                         paddingX={'m'}
                         gap={'s'}
                         direction={'row'}
-                        vertical={'space-between'}
-                        horizontal={'center'}
+                        horizontal={'space-between'}
+                        vertical={'center'}
                     >
                         <Flex
                             gap={'s'}>

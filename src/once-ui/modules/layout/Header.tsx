@@ -33,20 +33,20 @@ const Header: React.FC<HeaderProps> = ({ authenticated, avatar, name, subline })
       fillWidth
       paddingX="m"
       height="56"
-      alignItems="center"
+      horizontal="center"
       background="surface"
     >
       <Row hide="s">
         <Logo size="s"/>
       </Row>
-      <Row show="s" gap="4" alignItems="center">
+      <Row show="s" gap="4" horizontal="center">
         <NavIcon />
         <Logo wordmark={false} />
       </Row>
       {authenticated ? (
-        <Row fillWidth alignItems="center" justifyContent="space-between">
+        <Row fillWidth horizontal="center" vertical="space-between">
           <Row fillWidth>
-            <Row hide="s" fillWidth gap="4" paddingX="l" alignItems="center">
+            <Row hide="s" fillWidth gap="4" paddingX="l" horizontal="center">
               <ToggleButton selected={true} label="Dashboard" />
               <ToggleButton selected={pathname === "/apps"} label="Apps" />
               <ToggleButton selected={pathname === "/resources"} label="Resources" />
@@ -89,21 +89,21 @@ const Header: React.FC<HeaderProps> = ({ authenticated, avatar, name, subline })
           </Row>
         </Row>
       ) : (
-        <Row fillWidth alignItems="center" justifyContent="flex-end">
+        <Row fillWidth horizontal="center" vertical="end">
           <Row
             hide="s"
             textVariant="label-default-s"
             fillWidth
             gap="4"
             paddingX="l"
-            alignItems="center"
+            horizontal="center"
           >
             <SmartLink href=" ">Home</SmartLink>
             <SmartLink href=" ">Product</SmartLink>
             <SmartLink href=" ">Solutions</SmartLink>
             <SmartLink href=" ">Pricing</SmartLink>
           </Row>
-          <Row alignItems="center" gap="8">
+          <Row horizontal="center" gap="8">
             <Button size="s" variant="secondary" label="Login" href="" />
             <Button size="s" variant="primary" label="Sign up" href="" />
           </Row>

@@ -54,7 +54,7 @@ export default function Home() {
                                     radius={'xl'}
                                     overflow={'hidden'}
                                     position="relative"
-                                    vertical={'center'}
+                                    horizontal={'center'}
                                 >
                                     {data.background && (
                                         <SmartImage
@@ -118,6 +118,8 @@ export default function Home() {
                                                                     fill
                                                                     maxWidth={'24'}
                                                                     maxHeight={'24'}
+                                                                    minHeight={'24'}
+                                                                    minWidth={'24'}
                                                                     radius={'full'}
                                                                     alt={data.loccountrycode}
                                                                     sizes={'20px'}
@@ -231,6 +233,8 @@ export default function Home() {
                                                                 fill
                                                                 maxWidth={'24'}
                                                                 maxHeight={'24'}
+                                                                minHeight={'24'}
+                                                                minWidth={'24'}
                                                                 radius={'full'}
                                                                 alt={data.loccountrycode}
                                                                 sizes={'20px'}
