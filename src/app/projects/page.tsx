@@ -19,31 +19,28 @@ const list: Project[] = [
         description: 'A simple way to interact with @napi-rs/canvas in an advanced way! LazyCanvas provides you with classes and methods to interact with canvas more easily.',
         image: '/trademark/icon.svg',
         github: 'https://github.com/NMMTY/LazyCanvas',
-        website: 'https://github.com/NMMTY/LazyCanvas',
         npm: 'https://www.npmjs.com/package/@nmmty/lazycanvas',
         status: 'progress',
         language: 'TypeScript'
     },
     {
         key: 2,
-        name: '@hitomihiumi/lazy-animation',
-        description: 'This extension for @hitomihiumi/lazy-canvas made for create gif animations.',
+        name: '@hitomihiumi/filewatcher',
+        description: 'A simple file watcher for Node.js. This is a simple file watcher that uses chokidar to watch files and directories.',
         image: '/trademark/icon.svg',
-        github: 'https://github.com/hitomihiumi/lazy-animation',
-        website: 'https://docs.hitomihiumi.xyz/',
-        npm: 'https://www.npmjs.com/package/@hitomihiumi/lazy-animation',
-        status: 'frozen',
+        github: 'https://github.com/hitomihiumi/filewatcher',
+        npm: 'https://www.npmjs.com/package/@hitomihiumi/filewatcher',
+        status: 'progress',
         language: 'TypeScript'
     },
     {
         key: 3,
-        name: '@hitomihiumi/lazy-canvas',
-        description: 'This is a simple module designed to simplify the interaction with canvas, for people who do not know how to work with it.',
+        name: '@hitomihiumi/micro-docgen',
+        description: 'TypeScript documentation generator on steroids 💉. MicroDocgen is built on top of typedoc to leverage its power and add more features.',
         image: '/trademark/icon.svg',
-        github: 'https://github.com/hitomihiumi/lazy-canvas-ts',
-        website: 'https://docs.hitomihiumi.xyz/',
-        npm: 'https://www.npmjs.com/package/@hitomihiumi/lazy-canvas',
-        status: 'abandoned',
+        github: 'https://github.com/hitomihiumi/micro-docgen',
+        npm: 'https://www.npmjs.com/package/@hitomihiumi/micro-docgen',
+        status: 'progress',
         language: 'TypeScript'
     },
     {
@@ -66,9 +63,10 @@ export default function Home() {
                 fillHeight
                 paddingX={'l'}
                 direction={'column'}
-                alignItems={'center'}
-                justifyContent={'center'}>
+                horizontal={'center'}
+                vertical={'center'}>
                 <Flex
+                    //@ts-ignore
                     hide={'m' || 's'}
                     direction={'column'}
                     gap={'l'}
@@ -76,8 +74,8 @@ export default function Home() {
                     <Flex
                         fillWidth
                         paddingX={'m'}
-                        alignItems={'center'}
-                        justifyContent={'center'}
+                        horizontal={'center'}
+                        vertical={'center'}
                         gap={'m'}
                         direction={'column'}
                     >
@@ -109,15 +107,15 @@ export default function Home() {
                     show={'m'}
                     hide={'s'}
                     direction={'column'}
-                    alignItems={'center'}
+                    horizontal={'center'}
                     fillWidth
                     gap={'l'}
                 >
                     <Flex
                         fillWidth
                         paddingX={'m'}
-                        alignItems={'center'}
-                        justifyContent={'center'}
+                        horizontal={'center'}
+                        vertical={'center'}
                         gap={'m'}
                         direction={'column'}
                     >
@@ -132,7 +130,7 @@ export default function Home() {
                     </Flex>
                     <Flex
                         direction={'column'}
-                        alignItems={'center'}
+                        horizontal={'center'}
                         gap={'l'}>
                         <ProjectCarousel
                             mobile={false}
@@ -143,15 +141,15 @@ export default function Home() {
                 <Flex
                     show={'s'}
                     direction={'column'}
-                    alignItems={'center'}
+                    horizontal={'center'}
                     fillWidth
                     gap={'l'}
                 >
                     <Flex
                         fillWidth
                         paddingX={'m'}
-                        alignItems={'center'}
-                        justifyContent={'center'}
+                        horizontal={'center'}
+                        vertical={'center'}
                         gap={'m'}
                         direction={'column'}
                     >
@@ -166,7 +164,7 @@ export default function Home() {
                     </Flex>
                     <Flex
                         direction={'column'}
-                        alignItems={'center'}
+                        horizontal={'center'}
                         gap={'l'}>
                         <ProjectCarousel
                             mobile={true}

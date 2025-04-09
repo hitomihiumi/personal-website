@@ -3,9 +3,10 @@
 import React, { forwardRef } from "react";
 
 import { Skeleton, Icon, Text, StatusIndicator, Flex, SmartImage } from "@/once-ui/components";
-import styles from "./SteamAvatar.module.scss";
+import styles from "./AvatarWFrame.module.scss";
+import {RadiusSize} from "@/once-ui/types";
 
-interface SteamAvatarProps extends React.ComponentProps<typeof Flex> {
+interface AvatarWFrameProps extends React.ComponentProps<typeof Flex> {
     size?: "xs" | "s" | "m" | "l" | "xl";
     value?: string;
     src?: string;
@@ -35,7 +36,7 @@ const statusIndicatorSizeMapping: Record<"xs" | "s" | "m" | "l" | "xl", "s" | "m
     xl: "l",
 };
 
-const SteamAvatar = forwardRef<HTMLDivElement, SteamAvatarProps>(
+const AvatarWFrame = forwardRef<HTMLDivElement, AvatarWFrameProps>(
     ({ size = "m", value, src, frame, loading, empty, statusIndicator, className, style, ...rest }, ref) => {
         const isEmpty = empty || (!src && !value);
 
@@ -84,6 +85,9 @@ const SteamAvatar = forwardRef<HTMLDivElement, SteamAvatarProps>(
                             maxHeight={'160'}
                             sizes={`${sizeMapping[size]}px`}
                             className={styles.image}
+                            //@ts-ignore
+                            aspectRatio={'1/1'}
+                            {...rest}
                         />
                         {frame && (
                             <SmartImage
@@ -121,11 +125,10 @@ const SteamAvatar = forwardRef<HTMLDivElement, SteamAvatarProps>(
                 ref={ref}
                 role="img"
                 position="relative"
-                justifyContent="center"
-                alignItems="center"
+                horizontal="center"
+                vertical="center"
                 style={style}
                 className={`${styles.avatar} ${styles[size]} ${className || ""}`}
-                {...rest}
             >
                 {renderContent()}
                 {statusIndicator && (
@@ -141,7 +144,7 @@ const SteamAvatar = forwardRef<HTMLDivElement, SteamAvatarProps>(
     },
 );
 
-SteamAvatar.displayName = "Avatar";
+AvatarWFrame.displayName = "Avatar";
 
-export { SteamAvatar };
-export type { SteamAvatarProps };
+export { AvatarWFrame };
+export type { AvatarWFrameProps };

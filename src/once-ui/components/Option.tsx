@@ -15,8 +15,8 @@ export interface OptionProps {
   selected?: boolean;
   highlighted?: boolean;
   tabIndex?: number;
-  prefix?: string;
   onClick?: (value: string) => void;
+  onLinkClick?: () => void;
 }
 
 const Option = forwardRef<HTMLDivElement, OptionProps>(
@@ -33,7 +33,7 @@ const Option = forwardRef<HTMLDivElement, OptionProps>(
       highlighted,
       tabIndex,
       onClick,
-      prefix,
+      onLinkClick,
       ...props
     },
     ref,
@@ -43,11 +43,17 @@ const Option = forwardRef<HTMLDivElement, OptionProps>(
     }
 
     return (
-      <ElementType tabIndex={tabIndex} ref={ref} href={href} className="reset-button-styles">
+      <ElementType
+        tabIndex={tabIndex}
+        ref={ref}
+        href={href}
+        className="reset-button-styles fill-width"
+        onLinkClick={onLinkClick}
+      >
         <Flex
           {...props}
           fillWidth
-          alignItems="center"
+          vertical="center"
           paddingX="12"
           paddingY="8"
           gap="12"
@@ -67,13 +73,9 @@ const Option = forwardRef<HTMLDivElement, OptionProps>(
           })}
           data-value={value}
         >
-          {hasPrefix && <Flex
-              style={{["color" as string]: prefix
-                  ? `var(--${prefix})`
-                  : "var(--neutral-on-background-medium)"}}
-          >{hasPrefix}</Flex>}
+          {hasPrefix && <Flex className={styles.prefix}>{hasPrefix}</Flex>}
           <Flex
-            alignItems="flex-start"
+            horizontal="start"
             style={{
               whiteSpace: "nowrap",
             }}

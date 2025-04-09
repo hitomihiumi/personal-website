@@ -13,17 +13,11 @@ interface SpinnerProps extends React.ComponentProps<typeof Flex> {
 const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
   ({ size = "m", ariaLabel = "Loading", className, style, ...rest }, ref) => {
     return (
-      <Flex
-        justifyContent="center"
-        alignItems="center"
-        style={style}
-        className={className}
-        {...rest}
-      >
+      <Flex horizontal="center" vertical="center" style={style} className={className} {...rest}>
         <Flex
           ref={ref}
-          justifyContent="center"
-          alignItems="center"
+          horizontal="center"
+          vertical="center"
           className={styles[size]}
           role="status"
           aria-label={ariaLabel}

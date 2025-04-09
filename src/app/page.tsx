@@ -8,11 +8,13 @@ import {
     Flex,
     Avatar,
     IconButton,
-    RevealFx, Option
+    RevealFx,
+    Option
 } from '@/once-ui/components';
 
 import { Data } from '@/lib/types';
 import { ButtonMenu } from "@/components/ButtonMenu";
+import { AvatarWFrame } from "@/components/AvatarWFrame";
 
 export default function Home() {
     const [data, setData] = React.useState<Data>();
@@ -29,8 +31,8 @@ export default function Home() {
             fillHeight
             paddingX="l"
             direction="column"
-            alignItems="center"
-            justifyContent={'center'}>
+            vertical="center"
+            horizontal={'center'}>
             <RevealFx
                 speed={'fast'}
                 delay={0}
@@ -40,35 +42,40 @@ export default function Home() {
                     overflow="hidden"
                     fillWidth
                     minHeight="0"
-                    maxWidth={68}
+                    maxWidth={36}
                     direction="column"
-                    alignItems="center"
+                    vertical="center"
                     flex={1}>
                     <Flex
-                        maxWidth={'m'}
                         fillWidth
                         fillHeight
                         direction={'column'}
-                        alignItems={'center'}
-                        justifyContent={'center'}
+                        vertical={'center'}
+                        horizontal={'center'}
                     >
                         <Flex
                             fillWidth
                             fitHeight
                             direction={'column'}
-                            alignItems={'center'}
-                            justifyContent={'center'}
+                            vertical={'center'}
+                            horizontal={'center'}
                             gap={'s'}
                         >
                             <Flex
                                 direction={'row'}
                                 gap={'s'}
-                                alignItems={'center'}
+                                vertical={'center'}
+                                background={'page'}
+                                border={'neutral-alpha-strong'}
+                                radius={'xl-8'}
+                                padding={'s'}
                             >
-                                <Avatar
+                                <AvatarWFrame
                                     size="xl"
                                     style={{zIndex: '1'}}
                                     src={data ? data.data.avatarURL : ''}
+                                    frame={data ? data.data.avatarDecorationURL : ''}
+                                    radius={'full'}
                                 />
                                 <Flex
                                     direction={'column'}
@@ -77,7 +84,7 @@ export default function Home() {
                                     <Flex
                                         direction={'column'}
                                         gap={'2'}
-                                        justifyContent={'space-between'}
+                                        horizontal={'space-between'}
                                     >
                                         <Heading
                                             variant={'heading-strong-xl'}>
@@ -97,7 +104,7 @@ export default function Home() {
                                 </Flex>
                             </Flex>
                             <Flex
-                                justifyContent={'space-between'}
+                                horizontal={'space-between'}
                                 gap={'s'}>
                                 <IconButton
                                     icon={'github'}
@@ -139,7 +146,6 @@ export default function Home() {
                                             href={'https://lens.google.com/uploadbyurl?url=' + data?.data.avatarURL}
                                        />
                                     </>}
-
                                 />
                             </Flex>
                         </Flex>

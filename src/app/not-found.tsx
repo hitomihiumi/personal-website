@@ -8,8 +8,8 @@ export default function NotFound() {
         <Flex
             direction={'column'}
             mobileDirection={'column'}
-            justifyContent={'center'}
-            alignItems={'center'}
+            horizontal={'center'}
+            vertical={'center'}
             gap="24"
             maxWidth="l"
             fillHeight
@@ -21,7 +21,7 @@ export default function NotFound() {
             >
                 404 - Page Not Found
             </Heading>
-            <Row justifyContent={'center'} maxWidth={'l'} >
+            <Row horizontal={'center'} maxWidth={'l'} >
                 <Text align={'center'} variant={'body-default-l'}>
                     The page you are looking for might don't exist or have been removed, had its name changed, or is temporarily unavailable.
                 </Text>

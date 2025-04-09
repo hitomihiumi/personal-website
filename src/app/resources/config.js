@@ -38,7 +38,7 @@ const og = {
 // default schema data
 const schema = {
   logo: "/trademark/favicon.ico",
-  type: "Person",
+  type: "website",
   name: "HitomiHiumi",
   description: "Oh hey, this is my site, I've posted a little bit of information about myself here.",
   email: "",

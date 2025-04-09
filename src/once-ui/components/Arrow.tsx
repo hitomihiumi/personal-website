@@ -48,8 +48,8 @@ const Arrow: React.FC<ArrowProps> = ({
     <Flex
       ref={ref}
       position="relative"
-      alignItems="center"
-      justifyContent="flex-end"
+      vertical="center"
+      horizontal="center"
       className={classNames(styles.arrowContainer, className)}
       style={{
         transform: `scale(${scale})`,
@@ -57,8 +57,16 @@ const Arrow: React.FC<ArrowProps> = ({
       }}
     >
       <Flex className={classNames(styles.arrow, styles[color])} height={0.1} />
-      <Flex className={classNames(styles.arrowHead, styles[color])} height={0.0875} />
-      <Flex className={classNames(styles.arrowHead, styles[color])} height={0.0875} />
+      <Flex
+        position="absolute"
+        className={classNames(styles.arrowHead, styles[color])}
+        height={0.0875}
+      />
+      <Flex
+        position="absolute"
+        className={classNames(styles.arrowHead, styles[color])}
+        height={0.0875}
+      />
     </Flex>
   );
 };

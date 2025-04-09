@@ -1,4 +1,4 @@
-import { baseURL, routes as routesConfig } from "@/once-ui/resources/config";
+import { baseURL, routes as routesConfig } from "@/app/resources/config";
 
 export default async function sitemap() {
     //@ts-ignore

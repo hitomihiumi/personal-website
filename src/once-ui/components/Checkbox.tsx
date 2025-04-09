@@ -56,7 +56,7 @@ const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxP
 
     return (
       <Flex
-        alignItems="center"
+        vertical="center"
         gap="16"
         className={classNames(styles.container, className, {
           [styles.disabled]: disabled,
@@ -78,7 +78,6 @@ const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxP
           disabled={disabled}
           className={styles.hidden}
           tabIndex={-1}
-          {...props}
         />
         <Flex
           style={{
@@ -87,8 +86,8 @@ const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxP
           role="checkbox"
           position="relative"
           tabIndex={0}
-          justifyContent="center"
-          alignItems="center"
+          horizontal="center"
+          vertical="center"
           radius="xs"
           aria-checked={
             isIndeterminate
