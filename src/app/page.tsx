@@ -6,7 +6,6 @@ import {
     Heading,
     Text,
     Flex,
-    Avatar,
     IconButton,
     RevealFx,
     Option
