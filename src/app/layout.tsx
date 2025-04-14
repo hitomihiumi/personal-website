@@ -71,13 +71,12 @@ export async function generateMetadata(): Promise<Metadata> {
 	})
 
 	return {
-
 		metadataBase,
 	};
 }
 
 const randomColor = () => {
-	let arr = ['brand', 'sand', 'gray', 'slate', 'red', 'orange', 'yellow', 'moss', 'green', 'emerald', 'aqua', 'cyan', 'blue', 'indigo', 'violet', 'magenta', 'pink'];
+	let arr = ['brand', 'slate', 'red', 'moss', 'green', 'emerald', 'aqua', 'cyan', 'blue', 'indigo', 'violet', 'magenta', 'pink'];
 	return arr[Math.floor(Math.random() * arr.length)];
 }
 
@@ -150,7 +149,8 @@ export default function RootLayout({
 							mask={{
 								x: 50,
 								y: 0,
-								radius: 80
+								radius: 70,
+								cursor: true
 							}}
 							gradient={{
 								display: true,

@@ -65,7 +65,7 @@ import {
     VscSymbolVariable,
 } from "react-icons/vsc"
 
-import { IoGridOutline, IoSend } from "react-icons/io5";
+import { IoGridOutline, IoSend, IoShareSocialSharp } from "react-icons/io5";
 import { LuChevronsLeftRight } from "react-icons/lu";
 
 export const iconLibrary: Record<string, IconType> = {
@@ -121,7 +121,8 @@ export const iconLibrary: Record<string, IconType> = {
     typescript: SiTypescript,
     javascript: SiJavascript,
     npm: FaNpm,
-    send: RiSendPlaneFill
+    send: RiSendPlaneFill,
+    socialShare: IoShareSocialSharp,
 };
 
 export type IconLibrary = typeof iconLibrary;

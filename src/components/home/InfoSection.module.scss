@@ -1,0 +1,23 @@
+.position {
+  position: relative;
+}
+
+.textAlign {
+  text-align: start;
+}
+
+@media (--s) {
+  .position {
+    top: auto;
+    position: relative;
+  }
+
+  .textAlign {
+    text-align: center;
+  }
+
+  .about {
+    padding-left: var(--responsive-space-l);
+    padding-right: var(--responsive-space-l);
+  }
+}

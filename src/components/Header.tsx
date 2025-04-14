@@ -74,7 +74,7 @@ export const Header = () => {
                     horizontal={'center'}
                 >
                     <Flex
-                        background="surface"
+                        background="overlay"
                         border="neutral-medium"
                         radius="m-4"
                         shadow="l"
