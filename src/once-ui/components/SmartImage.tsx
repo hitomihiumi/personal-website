@@ -120,6 +120,7 @@ const SmartImage: React.FC<SmartImageProps> = ({
         overflow="hidden"
         zIndex={0}
         cursor={enlarge ? "interactive" : ""}
+        position={'relative'}
         style={{
           outline: "none",
           isolation: "isolate",
