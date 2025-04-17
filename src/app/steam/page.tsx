@@ -13,6 +13,7 @@ import {
 import { AvatarWFrame } from "@/components/AvatarWFrame";
 import { ExtendedSteamProfile, ExtendedSteamUsers } from "@/lib/types";
 import { BlurFlex } from "@/components/BlurFlex";
+import styles from "@/components/steam/page.module.scss";
 
 export default function Home() {
     const [data, setData] = React.useState<ExtendedSteamProfile>();
@@ -41,247 +42,126 @@ export default function Home() {
                     direction={'column'}
                     gap={'m'}
                 >
-                    {data && (
-                        <>
-                            <Column
-                                fillWidth
-                                maxWidth={'s'}
-                                position="relative"
-                                hide={'s'}
+                    <Column
+                        fillWidth
+                        className={styles.baseColumn}
+                        maxWidth={'s'}
+                    >
+                        <Flex
+                            borderWidth={2}
+                            radius={'xl'}
+                            overflow={'hidden'}
+                            position="relative"
+                            horizontal={'center'}
+                        >
+                            <SmartImage
+                                position={'absolute'}
+                                objectFit={'cover'}
+                                zIndex={-1}
+                                src={data?.background ? data.background : ''}
+                                isLoading={!data?.background}
+                            />
+                            <BlurFlex
+                                blurAmount={20}
+                                blurColor="rgba(0, 0, 0, 0.4)"
+                                blurFade={0.8}
                             >
                                 <Flex
-                                    borderWidth={2}
-                                    radius={'xl'}
-                                    overflow={'hidden'}
-                                    position="relative"
+                                    fillWidth
+                                    fillHeight
                                     horizontal={'center'}
-                                >
-                                    {data.background && (
-                                        <SmartImage
-                                            position={'absolute'}
-                                            objectFit={'cover'}
-                                            zIndex={-1}
-                                            src={data ? data.background : ''}
-                                        />
-                                    )}
-                                    <BlurFlex
-                                        blurAmount={20}
-                                        blurColor="rgba(0, 0, 0, 0.4)"
-                                        blurFade={0.8}
-                                    >
-                                        <Flex
-                                            fillWidth
-                                            fillHeight
-                                            horizontal={'center'}
-                                            vertical={'center'}
-                                            gap={'24'}
-                                            padding={'s'}
-                                        >
-                                            <AvatarWFrame
-                                                size={'xl'}
-                                                src={data ? data.avatarfull : ''}
-                                                frame={data ? data.frame : ''}
-                                            />
-                                            <Flex
-                                                fillHeight
-                                                gap="12"
-                                                direction={'column'}
-                                                horizontal={'start'}
-                                            >
-                                                <Flex
-                                                    direction={'column'}
-                                                >
-                                                    <Text
-                                                        variant={'display-strong-s'}
-                                                    >{data ? data.personaname : ''}</Text>
-                                                    <Text
-                                                        variant={'body-strong-xl'}
-                                                    >{data ? data.realname : ''}</Text>
-                                                </Flex>
-                                                <Flex
-                                                    fillWidth
-                                                >
-                                                    <Flex
-                                                        fillWidth
-                                                        gap={'4'}
-                                                        horizontal={'center'}
-                                                        direction={'column'}
-                                                    >
-                                                        {data?.locstatecode && (
-                                                            <Flex
-                                                                fillWidth
-                                                                fillHeight
-                                                                gap={'8'}
-                                                            >
-                                                                <SmartImage
-                                                                    src={`/country/${data.loccountrycode?.toLowerCase()}.svg`}
-                                                                    fill
-                                                                    maxWidth={'24'}
-                                                                    maxHeight={'24'}
-                                                                    minHeight={'24'}
-                                                                    minWidth={'24'}
-                                                                    radius={'full'}
-                                                                    alt={data.loccountrycode}
-                                                                    sizes={'20px'}
-                                                                />
-                                                                <Text
-                                                                    variant={'body-strong-l'}
-                                                                >
-                                                                    {data ? data.loccountrycode : ''}
-                                                                </Text>
-                                                            </Flex>
-                                                        )}
-                                                        {data?.level && (
-                                                            <Flex
-                                                                fillWidth
-                                                            >
-                                                                <Text
-                                                                    variant={'body-strong-l'}
-                                                                >
-                                                                    Level {data ? data.level : ''}
-                                                                </Text>
-                                                            </Flex>
-                                                        )}
-                                                    </Flex>
-                                                </Flex>
-                                            </Flex>
-                                        </Flex>
-                                    </BlurFlex>
-                                </Flex>
-                            </Column>
-                            <Column
-                                fillWidth
-                                maxWidth={'xs'}
-                                position="relative"
-                                show={'s'}
-                            >
-                                <Flex
-                                    borderWidth={2}
-                                    radius={'xl'}
-                                    overflow={'hidden'}
-                                    position="relative"
                                     vertical={'center'}
+                                    className={styles.contentFlex}
+                                    padding={'s'}
                                 >
-                                    {data.background && (
-                                        <SmartImage
-                                            position={'absolute'}
-                                            objectFit={'cover'}
-                                            zIndex={-1}
-                                            src={data ? data.background : ''}
-                                        />
-                                    )}
-                                    <BlurFlex
-                                        fillWidth
-                                        blurAmount={20}
-                                        blurColor="rgba(0, 0, 0, 0.4)"
-                                        blurFade={0.8}
-                                        flexProps={{
-                                            fillWidth: true,
-                                            fillHeight: true,
-                                            horizontal: 'center',
-                                            vertical: 'center',
-                                            gap: '12',
-                                            padding: 's',
-                                            direction: 'column'
-                                        }}
+                                    <AvatarWFrame
+                                        size={'xl'}
+                                        src={data ? data.avatarfull : ''}
+                                        frame={data ? data.frame : ''}
+                                    />
+                                    <Flex
+                                        fillHeight
+                                        gap="12"
+                                        direction={'column'}
+                                        horizontal={'start'}
                                     >
                                         <Flex
-                                            fillWidth
-                                            fillHeight
-                                            horizontal={'center'}
-                                            vertical={'center'}
-                                            gap={'12'}
-                                            padding={'s'}
                                             direction={'column'}
                                         >
-                                            <AvatarWFrame
-                                                size={'xl'}
-                                                src={data ? data.avatarfull : ''}
-                                                frame={data ? data.frame : ''}
-                                            />
+                                            <Text
+                                                variant={'display-strong-s'}
+                                                className={styles.white}
+                                            >{data ? data.personaname : ''}</Text>
+                                            <Text
+                                                variant={'body-strong-xl'}
+                                                className={styles.white}
+                                            >{data ? data.realname : ''}</Text>
+                                        </Flex>
+                                        <Flex
+                                            fillWidth
+                                        >
                                             <Flex
-                                                fillHeight
-                                                gap="12"
+                                                fillWidth
+                                                gap={'4'}
+                                                horizontal={'center'}
                                                 direction={'column'}
-                                                horizontal={'start'}
                                             >
-                                                <Flex
-                                                    direction={'column'}
-                                                >
-                                                    <Text
-                                                        variant={'display-strong-s'}
-                                                    >{data ? data.personaname : ''}</Text>
-                                                    <Text
-                                                        variant={'body-strong-xl'}
-                                                    >{data ? data.realname : ''}</Text>
-                                                </Flex>
-                                                <Flex
-                                                    fillWidth
-                                                    fillHeight
-                                                    gap={'4'}
-                                                    horizontal={'center'}
-                                                    vertical={'end'}
-                                                    direction={'column'}
-                                                >
-                                                    {data?.locstatecode && (
-                                                        <Flex
-                                                            fillWidth
-                                                            gap={'8'}
+                                                {data?.locstatecode && (
+                                                    <Flex
+                                                        fillWidth
+                                                        fillHeight
+                                                        gap={'8'}
+                                                    >
+                                                        <SmartImage
+                                                            src={`/country/${data.loccountrycode?.toLowerCase()}.svg`}
+                                                            fill
+                                                            maxWidth={'24'}
+                                                            maxHeight={'24'}
+                                                            minHeight={'24'}
+                                                            minWidth={'24'}
+                                                            radius={'full'}
+                                                            alt={data.loccountrycode}
+                                                            sizes={'20px'}
+                                                        />
+                                                        <Text
+                                                            variant={'body-strong-l'}
+                                                            className={styles.white}
                                                         >
-                                                            <SmartImage
-                                                                src={`/country/${data.loccountrycode?.toLowerCase()}.svg`}
-                                                                fill
-                                                                maxWidth={'24'}
-                                                                maxHeight={'24'}
-                                                                minHeight={'24'}
-                                                                minWidth={'24'}
-                                                                radius={'full'}
-                                                                alt={data.loccountrycode}
-                                                                sizes={'20px'}
-                                                            />
-                                                            <Text
-                                                                variant={'body-strong-l'}
-                                                            >
-                                                                {data ? data.loccountrycode : ''}
-                                                            </Text>
-                                                        </Flex>
-                                                    )}
-                                                    {data?.level && (
-                                                        <Flex
-                                                            fillWidth
+                                                            {data ? data.loccountrycode : ''}
+                                                        </Text>
+                                                    </Flex>
+                                                )}
+                                                {data?.level && (
+                                                    <Flex
+                                                        fillWidth
+                                                    >
+                                                        <Text
+                                                            variant={'body-strong-l'}
+                                                            className={styles.white}
                                                         >
-                                                            <Text
-                                                                variant={'body-strong-l'}
-                                                            >
-                                                                Level {data ? data.level : ''}
-                                                            </Text>
-                                                        </Flex>
-                                                    )}
-                                                </Flex>
+                                                            Level {data ? data.level : ''}
+                                                        </Text>
+                                                    </Flex>
+                                                )}
                                             </Flex>
                                         </Flex>
-                                    </BlurFlex>
+                                    </Flex>
                                 </Flex>
-                            </Column>
-                            <Flex
-                                gap={'24'}
-                            >
-                                <Button
-                                    variant={'secondary'}
-                                    prefixIcon={'steam'}
-                                    size={'m'}
-                                    label={'Steam Profile'}
-                                    href={'https://steamcommunity.com/id/Fan_Doctor_Who_Fan/'}
-                                    target={'_blank'}
-                                />
-                            </Flex>
-                        </>
-                    )}
-                    {data === undefined && (
-                        <Heading
-                            variant={'display-strong-m'}
-                        >Loading...</Heading>
-                    )}
+                            </BlurFlex>
+                        </Flex>
+                    </Column>
+                    <Flex
+                        gap={'24'}
+                    >
+                        <Button
+                            variant={'secondary'}
+                            prefixIcon={'steam'}
+                            size={'m'}
+                            label={'Steam Profile'}
+                            href={'https://steamcommunity.com/id/Fan_Doctor_Who_Fan/'}
+                            target={'_blank'}
+                        />
+                    </Flex>
                 </Flex>
             </Flex>
         </>

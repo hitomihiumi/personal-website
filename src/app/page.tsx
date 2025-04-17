@@ -52,10 +52,12 @@ export default function Home() {
             direction="row"
             mobileDirection={'column'}
             horizontal={'center'}>
-                {data && (
                     <AvatarSection
-                        avatarURL={data.avatarURL}
-                        avatarDecorationURL={data.avatarDecorationURL}>
+                        size={'xl'}
+                        src={data?.avatarURL}
+                        frame={data?.avatarDecorationURL}
+                        loading={!data}
+                    >
                         <Flex
                             direction={'column'}
                             horizontal={'center'}>
@@ -138,7 +140,6 @@ export default function Home() {
                             />
                         </Flex>
                     </AvatarSection>
-                )}
                 <InfoSection>
                     <Flex
                         direction={'column'}
@@ -152,14 +153,14 @@ export default function Home() {
                                 variant={'display-strong-xl'}
                                 className={styles.textAlign}
                             >
-                                {data ? data.globalName : ''}
+                                {data ? data.globalName : '...'}
                             </Heading>
                             <Text
                                 variant={'display-default-xs'}
                                 className={styles.textAlign}
                                 onBackground="neutral-weak"
                             >
-                                {data ? data.username : ''}
+                                {data ? data.username : 'hitomihiumi'}
                             </Text>
                         </Flex>
                         <Flex

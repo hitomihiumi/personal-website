@@ -13,6 +13,7 @@ import {
 	Flex,
 	ToastProvider,
 	ThemeProvider,
+	ThemeSwitcher
 } from "@/once-ui/components";
 import { Header } from "@/components/Header"
 import { Roboto_Mono } from "next/font/google";
@@ -22,6 +23,8 @@ import { Meta, Schema } from "@/once-ui/modules";
 import { Raleway } from 'next/font/google';
 import { Sora } from 'next/font/google';
 import React from "react";
+
+import styles from "@/components/layout/layout.module.scss";
 
 const primary = Raleway({
 	variable: '--font-primary',
@@ -58,10 +61,7 @@ const tertiary = Sora({
  */
 
 export async function generateMetadata(): Promise<Metadata> {
-	const host = (await headers()).get("host");
-	const metadataBase = host ? new URL(`https://${host}`) : undefined;
-
-	Meta.generate({
+	return Meta.generate({
 		title: meta.title,
 		description: meta.description,
 		type: 'website',
@@ -69,10 +69,6 @@ export async function generateMetadata(): Promise<Metadata> {
 		path: '/',
 		image: og.image
 	})
-
-	return {
-		metadataBase,
-	};
 }
 
 const randomColor = () => {
@@ -80,7 +76,7 @@ const randomColor = () => {
 	return arr[Math.floor(Math.random() * arr.length)];
 }
 
-const colorShift = (t = Date.now()) => Math.ceil(6 + 3 * (1 + Math.sin(t / 1000)));
+const colorShift = () => Math.floor(Math.random() * 6 + 3) * 100;
 
 export default function RootLayout({
 									   children,
@@ -89,6 +85,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<Flex
+			suppressHydrationWarning
 			as="html"
 			lang="en"
 			fillHeight
@@ -97,7 +94,6 @@ export default function RootLayout({
 			data-brand={style.brand}
 			data-accent={style.accent}
 			data-border={style.border}
-			data-theme={style.theme}
 			data-solid={style.solid}
 			data-solid-style={style.solidStyle}
 			data-surface={style.surface}
@@ -157,10 +153,10 @@ export default function RootLayout({
 								x: 0,
 								y: 0,
 								width: 200,
-								height: 100,
+								height: 125,
 								tilt: 0,
 								opacity: 50,
-								colorStart: `scheme-${randomColor()}-${colorShift()}00`,
+								colorStart: `scheme-${randomColor()}-${colorShift()}`,
 								colorEnd: "page-background",
 							}}
 						/>
@@ -180,6 +176,8 @@ export default function RootLayout({
 							>
 								<Header/>
 								{children}
+								<ThemeSwitcher
+									className={styles.themeSwitcher}/>
 							</Flex>
 						</Column>
 					</Column>

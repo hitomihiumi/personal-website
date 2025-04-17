@@ -7,15 +7,27 @@ import { Flex } from "@/once-ui/components";
 import React, { forwardRef } from "react";
 
 export interface AvatarSectionProps {
-    avatarURL: string;
-    avatarDecorationURL: string;
+    size?: "xs" | "s" | "m" | "l" | "xl";
+    value?: string;
+    src?: string;
+    frame?: string | null;
+    loading?: boolean;
+    empty?: boolean;
+    statusIndicator?: {
+        color: "green" | "yellow" | "red" | "gray";
+    };
     flexProps?: React.ComponentProps<typeof Flex>;
 }
 
 export const AvatarSection = forwardRef<HTMLDivElement, AvatarSectionProps & React.ComponentProps<typeof Flex>> (
     ({
-        avatarURL,
-        avatarDecorationURL,
+        size = "m",
+        value,
+        src,
+        frame,
+        loading,
+        empty,
+        statusIndicator,
         className, style, children, flexProps, ...props }, ref) => {
     return (
         <Flex
@@ -33,10 +45,14 @@ export const AvatarSection = forwardRef<HTMLDivElement, AvatarSectionProps & Rea
             {...props}
         >
             <AvatarWFrame
-                size="xl"
+                size={size}
                 style={{zIndex: '1'}}
-                src={avatarURL}
-                frame={avatarDecorationURL}
+                src={src}
+                frame={frame}
+                loading={loading}
+                empty={empty}
+                statusIndicator={statusIndicator}
+                value={value}
                 radius={'full'}
             />
             {children}
