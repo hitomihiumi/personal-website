@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { Flex, ToggleButton, Line } from "@/once-ui/components";
-import styles from "@/components/Header.module.scss";
+import styles from "@/components/components/Header.module.scss";
 
 import { routes } from "@/app/resources/config";
 
@@ -74,8 +74,8 @@ export const Header = () => {
                     horizontal={'center'}
                 >
                     <Flex
-                        background="overlay"
-                        border="neutral-medium"
+                        background={"overlay"}
+                        border={"neutral-alpha-medium"}
                         radius="m-4"
                         shadow="l"
                         padding="4"
@@ -91,7 +91,7 @@ export const Header = () => {
                             <Line
                                 vert={true}
                                 height={2}
-                                background="neutral-alpha-medium"
+                                background={"neutral-alpha-medium"}
                             />
                             {routes["/projects"] && (
                                 <>

@@ -5,11 +5,11 @@ import styles from "@/components/home/InfoSection.module.scss";
 import { Flex } from "@/once-ui/components";
 import React, { forwardRef } from "react";
 
-export interface AvatarSectionProps {
+export interface InfoSectionProps {
     flexProps?: React.ComponentProps<typeof Flex>;
 }
 
-export const InfoSection = forwardRef<HTMLDivElement, AvatarSectionProps & React.ComponentProps<typeof Flex>> (
+export const InfoSection = forwardRef<HTMLDivElement, InfoSectionProps & React.ComponentProps<typeof Flex>> (
     ({
          className, style, children, flexProps, ...props }, ref) => {
         return (

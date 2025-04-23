@@ -8,9 +8,9 @@ import {
     Flex,
     Grid
 } from '@/once-ui/components';
-import { ProjectCard } from "@/components/ProjectCard";
+import { ProjectCard } from "@/components/components/ProjectCard";
 import { Project } from "@/lib/types";
-import { ProjectCarousel } from "@/components/ProjectCarousel";
+import { ProjectCarousel } from "@/components/components/ProjectCarousel";
 
 const list: Project[] = [
     {

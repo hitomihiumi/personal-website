@@ -3,7 +3,7 @@
 import { Flex, RevealFx } from "@/once-ui/components";
 import { useEffect, useState, useRef } from "react";
 import { Project } from "@/lib/types";
-import { ProjectCard, ProjectCardMobile } from "@/components/ProjectCard";
+import { ProjectCard, ProjectCardMobile } from "@/components/components/ProjectCard";
 
 interface ProjectCarouselProps extends React.ComponentProps<typeof Flex> {
     projects: Project[];

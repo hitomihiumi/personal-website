@@ -2,7 +2,6 @@ import "@/once-ui/styles/index.scss";
 import "@/once-ui/tokens/index.scss";
 
 import classNames from "classnames";
-import { headers } from "next/headers";
 import { Metadata } from "next";
 
 import { baseURL, style, meta, og, schema } from "@/app/resources/config";
@@ -15,18 +14,15 @@ import {
 	ThemeProvider,
 	ThemeSwitcher
 } from "@/once-ui/components";
-import { Header } from "@/components/Header"
-import { Roboto_Mono } from "next/font/google";
+import { Header } from "@/components/components/Header"
+import { Roboto_Mono, Nunito, Sora } from "next/font/google";
 
 import { Meta, Schema } from "@/once-ui/modules";
-
-import { Raleway } from 'next/font/google';
-import { Sora } from 'next/font/google';
 import React from "react";
 
 import styles from "@/components/layout/layout.module.scss";
 
-const primary = Raleway({
+const primary = Nunito({
 	variable: '--font-primary',
 	subsets: ['latin'],
 	display: 'swap'
@@ -64,8 +60,7 @@ export async function generateMetadata(): Promise<Metadata> {
 	return Meta.generate({
 		title: meta.title,
 		description: meta.description,
-		type: 'website',
-		baseURL: baseURL,
+		baseURL,
 		path: '/',
 		image: og.image
 	})

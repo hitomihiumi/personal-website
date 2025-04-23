@@ -10,19 +10,34 @@ import {
     SmartImage, 
     Button
 } from '@/once-ui/components';
-import { AvatarWFrame } from "@/components/AvatarWFrame";
+import { AvatarWFrame } from "@/components/components/AvatarWFrame";
 import { ExtendedSteamProfile, ExtendedSteamUsers } from "@/lib/types";
-import { BlurFlex } from "@/components/BlurFlex";
+import { BlurFlex } from "@/components/components/BlurFlex";
 import styles from "@/components/steam/page.module.scss";
 
 export default function Home() {
     const [data, setData] = React.useState<ExtendedSteamProfile>();
 
     useEffect(() => {
-        fetch('https://api.hitomihiumi.xyz/v2/steam/user/76561198904028626', { next: { revalidate: 6000 }, cache: 'default' })
+        const cacheKey = 'user-76561198904028626';
+        const cached = localStorage.getItem(cacheKey);
+        const now = Date.now();
+
+        if (cached) {
+            const { timestamp, data } = JSON.parse(cached);
+            if (now - timestamp < 6000_000) {
+                setData(data);
+                return;
+            }
+        }
+
+        fetch('https://api.hitomihiumi.xyz/v2/steam/user/76561198904028626')
             .then(res => res.json() as Promise<ExtendedSteamUsers>)
-            .then(res => setData(res.response.players[0]))
-    }, [])
+            .then(res => {
+                setData(res.response.players[0]);
+                localStorage.setItem(cacheKey, JSON.stringify({ timestamp: now, data: res.response.players[0] }));
+            });
+    }, []);
 
     return (
         <>

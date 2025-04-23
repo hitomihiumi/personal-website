@@ -69,6 +69,9 @@ const redirects = (str) => {
             return 'https://github.com/NMMTY/LazyCanvas';
         case 'nmmty':
             return 'https://github.com/NMMTY';
+        case 'fex':
+        case 'subwaysofyourmind':
+            return 'https://music.youtube.com/watch?v=9Q4qCkDwEvk';
         default:
             return '/';
     }
