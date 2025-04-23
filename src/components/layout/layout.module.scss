@@ -1,0 +1,12 @@
+.themeSwitcher {
+    position: fixed;
+    bottom: var(--static-space-32);
+}
+
+@media (--s) {
+    .themeSwitcher {
+        position: fixed;
+        top: var(--static-space-24);
+        bottom: auto;
+    }
+}

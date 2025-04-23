@@ -1,0 +1,13 @@
+.position {
+  position: sticky;
+  top: var(--static-space-48);
+  padding-bottom: var(--responsive-space-xl);
+}
+
+@media (--s) {
+  .position {
+    top: auto;
+    position: relative;
+    padding-bottom: var(--responsive-space-m);
+  }
+}

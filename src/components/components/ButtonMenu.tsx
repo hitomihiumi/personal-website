@@ -1,17 +1,16 @@
 "use client";
 
 import React from "react";
-import classNames from "classnames";
-import { Flex, DropdownWrapper, IconButton, IconButtonProps } from "@/once-ui/components";
-import styles from "./ButtonMenu.module.scss";
+import { DropdownWrapper, IconButton, ButtonProps, Button } from "@/once-ui/components";
 import { DropdownWrapperProps } from "@/once-ui/components/DropdownWrapper";
 
-interface ButtonMenuProps extends IconButtonProps,
+interface ButtonMenuProps extends ButtonProps,
     Pick<DropdownWrapperProps, "minHeight" | "minWidth" | "maxWidth"> {
     selected?: boolean;
     dropdown?: React.ReactNode;
     className?: string;
     style?: React.CSSProperties;
+    label?: string;
 }
 
 const ButtonMenu: React.FC<ButtonMenuProps> = ({
@@ -22,6 +21,7 @@ const ButtonMenu: React.FC<ButtonMenuProps> = ({
     minHeight,
     className,
     style,
+    label,
     ...buttonProps
 }) => {
     return (
@@ -33,11 +33,23 @@ const ButtonMenu: React.FC<ButtonMenuProps> = ({
                 borderRadius: "var(--radius-full)",
             }}
             trigger={
-                <IconButton
-                    variant="secondary"
-                    size="m"
-                    {...buttonProps}
-                />
+                <>
+                    {label ? (
+                    <Button
+                        label={label}
+                        variant="secondary"
+                        size="m"
+                        {...buttonProps}
+                    />
+                    ) : (
+                    <IconButton
+                        variant="secondary"
+                        size="m"
+                        icon={buttonProps.prefixIcon}
+                        {...buttonProps}
+                    />
+                    )}
+                </>
             }
             dropdown={<>{dropdown}</>}
         />

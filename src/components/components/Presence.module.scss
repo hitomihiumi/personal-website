@@ -1,0 +1,13 @@
+.base {
+  max-width: var(--static-height-360);
+  gap: var(--responsive-space-s);
+  overflow: hidden;
+}
+
+@media (--s) {
+  .base {
+    max-width: var(--static-height-360);
+    gap: var(--responsive-space-s);
+    overflow: hidden;
+  }
+}

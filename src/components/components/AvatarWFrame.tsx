@@ -4,7 +4,6 @@ import React, { forwardRef } from "react";
 
 import { Skeleton, Icon, Text, StatusIndicator, Flex, SmartImage } from "@/once-ui/components";
 import styles from "./AvatarWFrame.module.scss";
-import {RadiusSize} from "@/once-ui/types";
 
 interface AvatarWFrameProps extends React.ComponentProps<typeof Flex> {
     size?: "xs" | "s" | "m" | "l" | "xl";

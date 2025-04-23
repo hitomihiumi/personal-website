@@ -2,7 +2,6 @@ import "@/once-ui/styles/index.scss";
 import "@/once-ui/tokens/index.scss";
 
 import classNames from "classnames";
-import { headers } from "next/headers";
 import { Metadata } from "next";
 
 import { baseURL, style, meta, og, schema } from "@/app/resources/config";
@@ -13,17 +12,17 @@ import {
 	Flex,
 	ToastProvider,
 	ThemeProvider,
+	ThemeSwitcher
 } from "@/once-ui/components";
-import { Header } from "@/components/Header"
-import { Roboto_Mono } from "next/font/google";
+import { Header } from "@/components/components/Header"
+import { Roboto_Mono, Nunito, Sora } from "next/font/google";
 
 import { Meta, Schema } from "@/once-ui/modules";
-
-import { Raleway } from 'next/font/google';
-import { Sora } from 'next/font/google';
 import React from "react";
 
-const primary = Raleway({
+import styles from "@/components/layout/layout.module.scss";
+
+const primary = Nunito({
 	variable: '--font-primary',
 	subsets: ['latin'],
 	display: 'swap'
@@ -58,30 +57,21 @@ const tertiary = Sora({
  */
 
 export async function generateMetadata(): Promise<Metadata> {
-	const host = (await headers()).get("host");
-	const metadataBase = host ? new URL(`https://${host}`) : undefined;
-
-	Meta.generate({
+	return Meta.generate({
 		title: meta.title,
 		description: meta.description,
-		type: 'website',
-		baseURL: baseURL,
+		baseURL,
 		path: '/',
 		image: og.image
 	})
-
-	return {
-
-		metadataBase,
-	};
 }
 
 const randomColor = () => {
-	let arr = ['brand', 'sand', 'gray', 'slate', 'red', 'orange', 'yellow', 'moss', 'green', 'emerald', 'aqua', 'cyan', 'blue', 'indigo', 'violet', 'magenta', 'pink'];
+	let arr = ['brand', 'slate', 'red', 'moss', 'green', 'emerald', 'aqua', 'cyan', 'blue', 'indigo', 'violet', 'magenta', 'pink'];
 	return arr[Math.floor(Math.random() * arr.length)];
 }
 
-const colorShift = (t = Date.now()) => Math.ceil(6 + 3 * (1 + Math.sin(t / 1000)));
+const colorShift = () => Math.floor(Math.random() * 6 + 3) * 100;
 
 export default function RootLayout({
 									   children,
@@ -90,6 +80,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<Flex
+			suppressHydrationWarning
 			as="html"
 			lang="en"
 			fillHeight
@@ -98,7 +89,6 @@ export default function RootLayout({
 			data-brand={style.brand}
 			data-accent={style.accent}
 			data-border={style.border}
-			data-theme={style.theme}
 			data-solid={style.solid}
 			data-solid-style={style.solidStyle}
 			data-surface={style.surface}
@@ -150,17 +140,18 @@ export default function RootLayout({
 							mask={{
 								x: 50,
 								y: 0,
-								radius: 80
+								radius: 70,
+								cursor: true
 							}}
 							gradient={{
 								display: true,
 								x: 0,
 								y: 0,
 								width: 200,
-								height: 100,
+								height: 125,
 								tilt: 0,
 								opacity: 50,
-								colorStart: `scheme-${randomColor()}-${colorShift()}00`,
+								colorStart: `scheme-${randomColor()}-${colorShift()}`,
 								colorEnd: "page-background",
 							}}
 						/>
@@ -180,6 +171,8 @@ export default function RootLayout({
 							>
 								<Header/>
 								{children}
+								<ThemeSwitcher
+									className={styles.themeSwitcher}/>
 							</Flex>
 						</Column>
 					</Column>

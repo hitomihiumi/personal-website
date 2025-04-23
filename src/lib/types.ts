@@ -1,54 +1,71 @@
-export interface Data {
+export interface UserData {
     status: number;
     message: string;
-    data: {
+    data: User;
+}
+
+export interface PresenceData {
+    status: number;
+    message: string;
+    data: Presence;
+}
+
+export interface Activity {
+    name: string;
+    type: number;
+    url: string;
+    details: string;
+    state: string;
+    applicationId: string;
+    timestamps: {
+        start: number;
+        end: number;
+    };
+    party: {
         id: string;
-        bot: boolean;
-        system: boolean;
-        flags: number;
-        username: string;
-        globalName: string;
-        discriminator: string;
-        avatar: string;
-        banner: string;
-        accentColor: string;
-        avatarDecoration: string;
-        badges: string[];
-        avatarDecorationURL: string;
-        avatarURL: string;
-        bannerURL: string;
-        presence: {
-            userId: string;
-            guild: string;
-            status: string;
-            activities: Array<{
-                name: string;
-                type: number;
-                url: string;
-                details: string;
-                state: string;
-                applicationId: string;
-                timestamps: {
-                    start: number;
-                    end: number;
-                };
-                party: {
-                    id: string;
-                    size: [number, number];
-                };
-                assets: {
-                    largeImage: string;
-                    largeText: string;
-                    smallImage: string;
-                    smallText: string;
-                };
-                flags: number;
-                emoji: string;
-                buttons: Array<any>;
-                createTimestamp: number;
-            }>
-        }
+        size: [number, number];
+    };
+    assets: {
+        largeImage: string;
+        largeText: string;
+        smallImage: string;
+        smallText: string;
+    };
+    flags: number;
+    emoji: string;
+    buttons: Array<any>;
+    createTimestamp: number;
+}
+
+export interface Presence {
+    userId: string;
+    guild: string;
+    status: string;
+    activities: Array<Activity>;
+    clientStatus: {
+        desktop?: string;
+        mobile?: string;
+        web?: string;
     }
+}
+
+export interface User {
+    id: string;
+    bot: boolean;
+    system: boolean;
+    flags: number;
+    username: string;
+    globalName: string;
+    discriminator: string;
+    avatar: string;
+    banner: string;
+    accentColor: string;
+    avatarDecoration: string;
+    badges: string[];
+    avatarDecorationURL: string;
+    avatarURL: string;
+    bannerURL: string;
+    presence: Presence;
 }
 
 export interface Project {

@@ -1,0 +1,21 @@
+.white {
+    color: var(--static-white);
+}
+
+.baseColumn {
+    position: relative;
+}
+
+.contentFlex {
+    gap: var(--static-space-24);
+}
+
+@media (--s) {
+    .baseColumn {
+        position: relative;
+    }
+
+    .contentFlex {
+        gap: var(--static-space-4);
+    }
+}
