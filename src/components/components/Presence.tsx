@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { Activity } from "@/lib/types";
+import Image from "next/image";
 
 import { Flex, Heading, Text, SmartImage } from "@/once-ui/components";
 
@@ -67,21 +68,19 @@ export const Presence: React.FC<PresenceProps> = ({ data }) => {
                     padding={'12'}
                     gap={'16'}
                 >
-                    {data.assets.largeImage && (
-                        <>
-                            <SmartImage
-                                src={data.assets.largeImage || ''}
-                                aspectRatio={"1 / 1"}
-                                alt={data.assets.largeText || ''}
-                                fill
-                                maxWidth={'104'}
-                                maxHeight={'104'}
-                                position={'relative'}
-                                radius={'m'}
-                            />
-                        </>
-                    )}
-                    {data.assets.smallImage && (
+                    <SmartImage
+                        src={data.assets?.largeImage || '/images/game.png'}
+                        aspectRatio={"1 / 1"}
+                        alt={data.assets?.largeText || 'game'}
+                        fill
+                        maxWidth={'104'}
+                        maxHeight={'104'}
+                        minWidth={'104'}
+                        minHeight={'104'}
+                        position={'relative'}
+                        radius={'m'}
+                    />
+                    {data.assets?.smallImage && (
                         <>
                             <SmartImage
                                 src={data.assets.smallImage || ''}

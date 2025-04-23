@@ -35,7 +35,7 @@ export default function Home() {
             }
         }
 
-        fetch('https://api.hitomihiumi.xyz/v1/users/991777093312585808')
+        fetch('https://api.hitomihiumi.xyz/v1/users/991777093312585808?content=withoutPresence')
             .then(res => res.json() as Promise<UserData>)
             .then(res => {
                 let data = res.data;
