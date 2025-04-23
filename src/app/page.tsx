@@ -208,10 +208,14 @@ export default function Home() {
                     </Flex>
                 </InfoSection>
             </Flex>
-            <PresenceSection
-                data={presence}
-            >
-            </PresenceSection>
+            {presence && (
+                <>
+                    <PresenceSection
+                        data={presence}
+                    >
+                    </PresenceSection>
+                </>
+            )}
         </Flex>
     );
 }
