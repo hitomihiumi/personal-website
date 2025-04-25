@@ -1,30 +1,26 @@
 "use client";
 
 import { Flex, RevealFx } from "@/once-ui/components";
-import { useEffect, useState, useRef } from "react";
-import { Project } from "@/lib/types";
-import { ProjectCard, ProjectCardMobile } from "@/components/components/ProjectCard";
+import { useEffect, useState, useRef, Children } from "react";
 
-interface ProjectCarouselProps extends React.ComponentProps<typeof Flex> {
-    projects: Project[];
-    mobile?: boolean;
+interface ComponentCarouselProps extends React.ComponentProps<typeof Flex> {
     revealedByDefault?: boolean;
 }
 
-const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
-                                                             projects = [],
-                                                             mobile = false,
-                                               revealedByDefault = false,
-                                               ...rest
-                                           }) => {
+const ComponentCarousel: React.FC<ComponentCarouselProps> = ({
+                                                               children,
+                                                               revealedByDefault = false,
+                                                               ...rest
+                                                           }) => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
     const [isTransitioning, setIsTransitioning] = useState(revealedByDefault);
     const [initialTransition, setInitialTransition] = useState(revealedByDefault);
     const transitionTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
+    const components = Children.toArray(children);
 
     const handleImageClick = () => {
-        if (projects.length > 1) {
-            const nextIndex = (activeIndex + 1) % projects.length;
+        if (components.length > 1) {
+            const nextIndex = (activeIndex + 1) % components.length;
             handleControlClick(nextIndex);
         }
     };
@@ -57,18 +53,16 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
         };
     }, [revealedByDefault, initialTransition]);
 
-    if (projects.length === 0) {
+    if (components.length === 0) {
         return null;
     }
 
     return (
-        <Flex fillWidth gap="12" direction="column" {...rest}>
-            <Flex
-                maxHeight={12}
-                minHeight={12}
-                vertical={'center'}
-                horizontal={'center'}
-            >
+        <Flex
+            fillWidth
+            gap="12"
+            direction="column"
+            {...rest}>
                 <RevealFx
                     onClick={handleImageClick}
                     fillWidth
@@ -76,23 +70,12 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
                     translateY="16"
                     speed="fast"
                 >
-                    {mobile ? (
-                        <ProjectCardMobile
-                            key={projects[activeIndex].key}
-                            data={projects[activeIndex]}
-                        />
-                    ) : (
-                        <ProjectCard
-                            key={projects[activeIndex].key}
-                            data={projects[activeIndex]}
-                        />
-                    )}
+                    {components[activeIndex]}
                 </RevealFx>
-            </Flex>
-            {projects.length > 1 && (
+            {components.length > 1 && (
                 <>
                     <Flex gap="4" paddingX="s" fillWidth vertical="center">
-                        {projects.map((_, index) => (
+                        {components.map((_, index) => (
                             <Flex
                                 key={index}
                                 onClick={() => handleControlClick(index)}
@@ -115,5 +98,5 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
     );
 };
 
-ProjectCarousel.displayName = "ProjectCarousel";
-export { ProjectCarousel };
+ComponentCarousel.displayName = "ComponentCarousel";
+export { ComponentCarousel };

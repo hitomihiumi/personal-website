@@ -14,7 +14,7 @@ import {
 	ThemeProvider,
 	ThemeSwitcher
 } from "@/once-ui/components";
-import { Header } from "@/components/components/Header"
+import { Header } from "@/components/components"
 import { Roboto_Mono, Nunito, Sora } from "next/font/google";
 
 import { Meta, Schema } from "@/once-ui/modules";

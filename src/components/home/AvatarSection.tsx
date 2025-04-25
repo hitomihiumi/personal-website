@@ -2,7 +2,7 @@
 
 import styles from "@/components/home/AvatarSection.module.scss";
 
-import { AvatarWFrame } from "@/components/components/AvatarWFrame";
+import { AvatarWFrame } from "@/components/components";
 import { Flex } from "@/once-ui/components";
 import React, { forwardRef } from "react";
 

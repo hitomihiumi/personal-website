@@ -8,15 +8,17 @@ import {
     Flex,
     Grid
 } from '@/once-ui/components';
-import { ProjectCard } from "@/components/components/ProjectCard";
+import {
+    ProjectCard,
+    ProjectCardMobile,
+    ComponentCarousel } from "@/components/components";
 import { Project } from "@/lib/types";
-import { ProjectCarousel } from "@/components/components/ProjectCarousel";
 
 const list: Project[] = [
     {
         key: 1,
         name: '@nmmty/lazycanvas',
-        description: 'A simple way to interact with @napi-rs/canvas in an advanced way! LazyCanvas provides you with classes and methods to interact with canvas more easily.',
+        description: 'LazyCanvas provides you with classes and methods to interact with @napi-rs/canvas more easily.',
         image: '/trademark/icon.svg',
         github: 'https://github.com/NMMTY/LazyCanvas',
         npm: 'https://www.npmjs.com/package/@nmmty/lazycanvas',
@@ -132,10 +134,16 @@ export default function Home() {
                         direction={'column'}
                         horizontal={'center'}
                         gap={'l'}>
-                        <ProjectCarousel
-                            mobile={false}
-                            projects={list}
-                        />
+                        <ComponentCarousel>
+                            {list.map((item) => {
+                                return (
+                                    <ProjectCard
+                                        key={item.key}
+                                        data={item}
+                                    />
+                                )
+                            })}
+                        </ComponentCarousel>
                     </Flex>
                 </Flex>
                 <Flex
@@ -166,9 +174,17 @@ export default function Home() {
                         direction={'column'}
                         horizontal={'center'}
                         gap={'l'}>
-                        <ProjectCarousel
-                            mobile={true}
-                            projects={list} />
+                        <ComponentCarousel
+                        >
+                            {list.map((item) => {
+                                return (
+                                    <ProjectCardMobile
+                                        key={item.key}
+                                        data={item}
+                                    />
+                                )
+                            })}
+                        </ComponentCarousel>
                     </Flex>
                 </Flex>
             </Flex>
