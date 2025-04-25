@@ -34,7 +34,7 @@ export interface Activity {
     flags: number;
     emoji: string;
     buttons: Array<any>;
-    createTimestamp: number;
+    createdTimestamp: number;
 }
 
 export interface Presence {

@@ -2,23 +2,25 @@
 
 import { useEffect, useState } from "react";
 import type { Activity } from "@/lib/types";
+import Image from "next/image";
 
 import { Flex, Heading, Text, SmartImage } from "@/once-ui/components";
 
 import styles from "@/components/components/Presence.module.scss";
 
 type PresenceTimeProps = {
-    startTime: number;
+    startTime?: number;
     endTime?: number;
+    createdTimestamp?: number;
 };
 
-const PresenceTime: React.FC<PresenceTimeProps> = ({ startTime, endTime }) => {
+const PresenceTime: React.FC<PresenceTimeProps> = ({ startTime, endTime, createdTimestamp }) => {
     const [currentTime, setCurrentTime] = useState("");
 
     useEffect(() => {
         const updateTime = () => {
             const now = Date.now();
-            const elapsed = Math.max(0, now - startTime);
+            const elapsed = Math.max(0, now - (startTime ?? createdTimestamp ?? 0));
             const remaining = endTime ? Math.max(0, endTime - now) : 0;
 
             const totalSeconds = endTime ? remaining : elapsed;
@@ -55,7 +57,8 @@ export const Presence: React.FC<PresenceProps> = ({ data }) => {
     return (
         <>
             <Flex
-                fill
+                fillHeight
+                fitWidth
                 direction={'column'}
                 background={"overlay"}
                 border={"neutral-alpha-medium"}
@@ -67,21 +70,19 @@ export const Presence: React.FC<PresenceProps> = ({ data }) => {
                     padding={'12'}
                     gap={'16'}
                 >
-                    {data.assets.largeImage && (
-                        <>
-                            <SmartImage
-                                src={data.assets.largeImage || ''}
-                                aspectRatio={"1 / 1"}
-                                alt={data.assets.largeText || ''}
-                                fill
-                                maxWidth={'104'}
-                                maxHeight={'104'}
-                                position={'relative'}
-                                radius={'m'}
-                            />
-                        </>
-                    )}
-                    {data.assets.smallImage && (
+                    <SmartImage
+                        src={data.assets?.largeImage || '/images/game.png'}
+                        aspectRatio={"1 / 1"}
+                        alt={data.assets?.largeText || 'game'}
+                        fill
+                        maxWidth={'104'}
+                        maxHeight={'104'}
+                        minWidth={'104'}
+                        minHeight={'104'}
+                        position={'relative'}
+                        radius={'m'}
+                    />
+                    {data.assets?.smallImage && (
                         <>
                             <SmartImage
                                 src={data.assets.smallImage || ''}
@@ -106,7 +107,7 @@ export const Presence: React.FC<PresenceProps> = ({ data }) => {
                                 <Heading
                                     variant={'heading-strong-xl'}
                                 >
-                                    {data.name.length > 14 ? data.name.slice(0, 11) + '...' : data.name}
+                                    {data.name.length > 20 ? data.name.slice(0, 17) + '...' : data.name}
                                 </Heading>
                             </>
                         )}
@@ -115,7 +116,7 @@ export const Presence: React.FC<PresenceProps> = ({ data }) => {
                                 <Text
                                     variant={'body-default-m'}
                                     onBackground={'neutral-medium'}>
-                                    {data.details.length > 28 ? data.details.slice(0, 24) + '...' : data.details}
+                                    {data.details.length > 28 ? data.details.slice(0, 26) + '...' : data.details}
                                 </Text>
                             </>
                         )}
@@ -124,7 +125,7 @@ export const Presence: React.FC<PresenceProps> = ({ data }) => {
                                 <Text
                                     variant={'body-default-m'}
                                     onBackground={'neutral-medium'}>
-                                    {data.state.length > 28 ? data.state.slice(0, 24) + '...' : data.state}
+                                    {data.state.length > 28 ? data.state.slice(0, 26) + '...' : data.state}
                                 </Text>
                             </>
                         )}
@@ -133,7 +134,11 @@ export const Presence: React.FC<PresenceProps> = ({ data }) => {
                                 <Text
                                     variant={'body-default-m'}
                                     onBackground={'neutral-weak'}>
-                                    <PresenceTime startTime={data.timestamps.start} endTime={data.timestamps.end} />
+                                    <PresenceTime
+                                        startTime={data.timestamps.start}
+                                        endTime={data.timestamps.end}
+                                        createdTimestamp={data.createdTimestamp}
+                                    />
                                 </Text>
                             </>
                         )}

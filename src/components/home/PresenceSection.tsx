@@ -5,7 +5,7 @@ import styles from "@/components/home/PresenceSection.module.scss";
 import { Flex } from "@/once-ui/components";
 import React, { forwardRef } from "react";
 import type { Presence as IPresence } from "@/lib/types";
-import { PresenceCarousel } from "@/components/components/PresenceCarousel";
+import { ComponentCarousel, Presence } from "@/components/components";
 
 export interface PresenceSectionProps {
     data?: IPresence;
@@ -28,12 +28,14 @@ export const PresenceSection = forwardRef<HTMLDivElement, PresenceSectionProps &
             >
                 {data && (
                     <>
-                        <PresenceCarousel
-                            style={{
-                                width: 'var(--static-height-360)'
-                            }}
-                            presence={data}
-                        />
+                        <ComponentCarousel
+                            fit>
+                            {data.activities.map((activity, index) => (
+                                <>
+                                    <Presence data={activity} key={index}/>
+                                </>
+                            ))}
+                        </ComponentCarousel>
                     </>
                 )}
                 {children}

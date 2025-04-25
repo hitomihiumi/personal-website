@@ -10,9 +10,8 @@ import {
     SmartImage, 
     Button
 } from '@/once-ui/components';
-import { AvatarWFrame } from "@/components/components/AvatarWFrame";
+import { AvatarWFrame, BlurFlex } from "@/components/components";
 import { ExtendedSteamProfile, ExtendedSteamUsers } from "@/lib/types";
-import { BlurFlex } from "@/components/components/BlurFlex";
 import styles from "@/components/steam/page.module.scss";
 
 export default function Home() {
