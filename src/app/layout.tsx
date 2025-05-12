@@ -66,13 +66,6 @@ export async function generateMetadata(): Promise<Metadata> {
 	})
 }
 
-const randomColor = () => {
-	let arr = ['brand', 'slate', 'red', 'moss', 'green', 'emerald', 'aqua', 'cyan', 'blue', 'indigo', 'violet', 'magenta', 'pink'];
-	return arr[Math.floor(Math.random() * arr.length)];
-}
-
-const colorShift = () => Math.floor(Math.random() * 6 + 3) * 100;
-
 export default function RootLayout({
 									   children,
 								   }: Readonly<{
@@ -138,10 +131,9 @@ export default function RootLayout({
 							style={{zIndex: '-1'}}
 							position="fixed"
 							mask={{
-								x: 50,
+								x: 0,
 								y: 0,
-								radius: 70,
-								cursor: true
+								radius: 80,
 							}}
 							gradient={{
 								display: true,
@@ -149,10 +141,14 @@ export default function RootLayout({
 								y: 0,
 								width: 200,
 								height: 125,
-								tilt: 0,
+								tilt: 10,
 								opacity: 50,
-								colorStart: `scheme-${randomColor()}-${colorShift()}`,
+								colorStart: `scheme-aqua-400`,
 								colorEnd: "page-background",
+							}}
+							grid={{
+								display: true,
+								 color: `scheme-aqua-400`,
 							}}
 						/>
 						<Column

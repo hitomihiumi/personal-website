@@ -52,6 +52,7 @@ const ButtonMenu: React.FC<ButtonMenuProps> = ({
                 </>
             }
             dropdown={<>{dropdown}</>}
+            className={className}
         />
     );
 };
