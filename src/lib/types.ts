@@ -1,15 +1,3 @@
-export interface UserData {
-    status: number;
-    message: string;
-    data: User;
-}
-
-export interface PresenceData {
-    status: number;
-    message: string;
-    data: Presence;
-}
-
 export interface Activity {
     name: string;
     type: number;
@@ -38,8 +26,6 @@ export interface Activity {
 }
 
 export interface Presence {
-    userId: string;
-    guild: string;
     status: string;
     activities: Array<Activity>;
     clientStatus: {

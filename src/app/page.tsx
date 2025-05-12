@@ -10,7 +10,7 @@ import {
     Line
 } from '@/once-ui/components';
 
-import { User, UserData, Presence, PresenceData } from '@/lib/types';
+import { User, Presence } from '@/lib/types';
 import { ButtonMenu } from "@/components/components/ButtonMenu";
 import { AvatarSection } from "@/components/home/AvatarSection";
 import { InfoSection } from "@/components/home/InfoSection";
@@ -36,9 +36,9 @@ export default function Home() {
         }
 
         fetch('https://api.hitomihiumi.xyz/v1/users/991777093312585808?content=withoutPresence')
-            .then(res => res.json() as Promise<UserData>)
+            .then(res => res.json() as Promise<User>)
             .then(res => {
-                let data = res.data;
+                let data = res;
                 data.avatarURL = data.avatarURL.replace('?size=4096', '?size=256');
                 setData(data);
                 localStorage.setItem(cacheKey, JSON.stringify({ timestamp: now, data: data }));
@@ -52,16 +52,16 @@ export default function Home() {
 
         if (cached) {
             const { timestamp, data } = JSON.parse(cached);
-            if (now - timestamp < 10_000) {
+            if (now - timestamp < 15_000) {
                 setPresence(data);
                 return;
             }
         }
 
         fetch('https://api.hitomihiumi.xyz/v1/users/991777093312585808?content=presence')
-            .then(res => res.json() as Promise<PresenceData>)
+            .then(res => res.json() as Promise<Presence>)
             .then(res => {
-                let data = res.data;
+                let data = res;
                 setPresence(data);
                 localStorage.setItem(cacheKey, JSON.stringify({ timestamp: now, data: data }));
             });

@@ -2,16 +2,23 @@
 
 import { useEffect, useState } from "react";
 import type { Activity } from "@/lib/types";
-import Image from "next/image";
 
 import { Flex, Heading, Text, SmartImage } from "@/once-ui/components";
 
 import styles from "@/components/components/Presence.module.scss";
 
 type PresenceTimeProps = {
-    startTime?: number;
-    endTime?: number;
-    createdTimestamp?: number;
+    startTime?: number | string;
+    endTime?: number | string;
+    createdTimestamp?: number | string;
+};
+
+const parseTime = (value?: number | string): number | undefined => {
+    if (typeof value === "string") {
+        const parsed = Date.parse(value);
+        return isNaN(parsed) ? undefined : parsed;
+    }
+    return value;
 };
 
 const PresenceTime: React.FC<PresenceTimeProps> = ({ startTime, endTime, createdTimestamp }) => {
@@ -20,10 +27,13 @@ const PresenceTime: React.FC<PresenceTimeProps> = ({ startTime, endTime, created
     useEffect(() => {
         const updateTime = () => {
             const now = Date.now();
-            const elapsed = Math.max(0, now - (startTime ?? createdTimestamp ?? 0));
-            const remaining = endTime ? Math.max(0, endTime - now) : 0;
+            const start = parseTime(startTime) ?? parseTime(createdTimestamp) ?? 0;
+            const end = parseTime(endTime);
 
-            const totalSeconds = endTime ? remaining : elapsed;
+            const elapsed = Math.max(0, now - start);
+            const remaining = end ? Math.max(0, end - now) : 0;
+
+            const totalSeconds = end ? remaining : elapsed;
             const hours = Math.floor(totalSeconds / 3600000);
             const minutes = Math.floor((totalSeconds % 3600000) / 60000);
             const seconds = Math.floor((totalSeconds % 60000) / 1000);
@@ -43,10 +53,30 @@ const PresenceTime: React.FC<PresenceTimeProps> = ({ startTime, endTime, created
         const intervalId = setInterval(updateTime, 1000);
 
         return () => clearInterval(intervalId);
-    }, [startTime, endTime]);
+    }, [startTime, endTime, createdTimestamp]);
 
     return <>{currentTime} {endTime ? 'remains' : 'elapsed'}</>;
 };
+const getURL = (hash: string) => {
+    if (!hash) return null;
+    if (hash.includes(':')) {
+        const [platform, id] = hash.split(':');
+        switch (platform) {
+            case 'mp':
+                return `https://media.discordapp.net/${id}`;
+            case 'spotify':
+                return `https://i.scdn.co/image/${id}`;
+            case 'youtube':
+                return `https://i.ytimg.com/vi/${id}/hqdefault_live.jpg`;
+            case 'twitch':
+                return `https://static-cdn.jtvnw.net/previews-ttv/live_user_${id}.png`;
+            default:
+                return null;
+        }
+    }
+
+    return null
+}
 
 interface PresenceProps {
     data: Activity;
@@ -71,7 +101,7 @@ export const Presence: React.FC<PresenceProps> = ({ data }) => {
                     gap={'16'}
                 >
                     <SmartImage
-                        src={data.assets?.largeImage || '/images/game.png'}
+                        src={getURL(data.assets?.largeImage) || '/images/game.png'}
                         aspectRatio={"1 / 1"}
                         alt={data.assets?.largeText || 'game'}
                         fill
@@ -85,7 +115,7 @@ export const Presence: React.FC<PresenceProps> = ({ data }) => {
                     {data.assets?.smallImage && (
                         <>
                             <SmartImage
-                                src={data.assets.smallImage || ''}
+                                src={getURL(data.assets.smallImage) || ''}
                                 aspectRatio={"1 / 1"}
                                 alt={data.assets.smallText || ''}
                                 fill
