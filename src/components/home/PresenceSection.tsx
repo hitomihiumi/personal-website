@@ -17,7 +17,7 @@ export const PresenceSection = forwardRef<HTMLDivElement, PresenceSectionProps &
          className, style, children, data, flexProps, ...props }, ref) => {
         return (
             <Flex
-                fill
+                fit
                 horizontal={'center'}
                 className={styles.position}
                 ref={ref}

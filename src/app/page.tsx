@@ -52,7 +52,7 @@ export default function Home() {
 
         if (cached) {
             const { timestamp, data } = JSON.parse(cached);
-            if (now - timestamp < 15_000) {
+            if (now - timestamp < 5_000) {
                 setPresence(data);
                 return;
             }
@@ -95,7 +95,7 @@ export default function Home() {
                             <>
                                 <Flex
                                     direction={'column'}
-                                    gap={'4'}
+                                    gap={'2'}
                                     padding={'4'}
                                     horizontal={'space-between'}>
                                     <Button
@@ -143,20 +143,26 @@ export default function Home() {
                                         size={'s'}
                                         target={'_blank'}
                                     />
-                                </Flex>
-                                <Line
-                                    vert={false}
-                                    background={'neutral-alpha-medium'}/>
-                                <Flex
-                                    direction={'column'}
-                                    gap={'4'}
-                                    padding={'4'}
-                                    horizontal={'space-between'}>
+                                    <Line
+                                        vert={false}
+                                        background={'neutral-alpha-medium'}/>
                                     <Button
                                         fillWidth
                                         label={'Find avatar?'}
                                         prefixIcon={'search'}
                                         href={'https://lens.google.com/uploadbyurl?url=' + data?.avatarURL}
+                                        variant={'tertiary'}
+                                        size={'s'}
+                                        target={'_blank'}
+                                    />
+                                    <Line
+                                        vert={false}
+                                        background={'neutral-alpha-medium'}/>
+                                    <Button
+                                        fillWidth
+                                        label={'Meow'}
+                                        prefixIcon={'cat'}
+                                        href={'/meow'}
                                         variant={'tertiary'}
                                         size={'s'}
                                         target={'_blank'}
