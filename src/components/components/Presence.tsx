@@ -84,6 +84,17 @@ interface PresenceProps {
 
 export const Presence: React.FC<PresenceProps> = ({ data }) => {
 
+    if (!data) return (
+        <></>
+    );
+
+    let { type, name, details, state, emoji, createdTimestamp, timestamps, assets } = data;
+
+    if (type === 4) {
+        name = state || name;
+        state = null;
+    }
+
     return (
         <>
             <Flex
@@ -101,9 +112,9 @@ export const Presence: React.FC<PresenceProps> = ({ data }) => {
                     gap={'16'}
                 >
                     <SmartImage
-                        src={getURL(data.assets?.largeImage) || '/images/game.png'}
+                        src={type === 4 ? emoji?.animated ? emoji?.imageURL.replace(/\.webp/g, '.gif') || '/images/game.png' : emoji?.imageURL || '/images/game.png' : getURL(assets?.largeImage as string) || '/images/game.png'}
                         aspectRatio={"1 / 1"}
-                        alt={data.assets?.largeText || 'game'}
+                        alt={assets?.largeText || 'game'}
                         fill
                         maxWidth={'104'}
                         maxHeight={'104'}
@@ -112,12 +123,12 @@ export const Presence: React.FC<PresenceProps> = ({ data }) => {
                         position={'relative'}
                         radius={'m'}
                     />
-                    {data.assets?.smallImage && (
+                    {assets?.smallImage && (
                         <>
                             <SmartImage
-                                src={getURL(data.assets.smallImage) || ''}
+                                src={getURL(assets.smallImage) || ''}
                                 aspectRatio={"1 / 1"}
-                                alt={data.assets.smallText || ''}
+                                alt={assets.smallText || ''}
                                 fill
                                 maxWidth={'32'}
                                 maxHeight={'32'}
@@ -132,42 +143,42 @@ export const Presence: React.FC<PresenceProps> = ({ data }) => {
                     <Flex
                         direction={'column'}
                     >
-                        {data.name && (
+                        {name && (
                             <>
                                 <Heading
                                     variant={'heading-strong-xl'}
                                 >
-                                    {data.name.length > 20 ? data.name.slice(0, 17) + '...' : data.name}
+                                    {name.length > 20 ? name.slice(0, 17) + '...' : name}
                                 </Heading>
                             </>
                         )}
-                        {data.details && (
+                        {details && (
                             <>
                                 <Text
                                     variant={'body-default-m'}
                                     onBackground={'neutral-medium'}>
-                                    {data.details.length > 28 ? data.details.slice(0, 26) + '...' : data.details}
+                                    {details.length > 28 ? details.slice(0, 26) + '...' : details}
                                 </Text>
                             </>
                         )}
-                        {data.state && (
+                        {state && (
                             <>
                                 <Text
                                     variant={'body-default-m'}
                                     onBackground={'neutral-medium'}>
-                                    {data.state.length > 28 ? data.state.slice(0, 26) + '...' : data.state}
+                                    {state.length > 28 ? state.slice(0, 26) + '...' : state}
                                 </Text>
                             </>
                         )}
-                        {data.timestamps && (
+                        {timestamps && (
                             <>
                                 <Text
                                     variant={'body-default-m'}
                                     onBackground={'neutral-weak'}>
                                     <PresenceTime
-                                        startTime={data.timestamps.start}
-                                        endTime={data.timestamps.end}
-                                        createdTimestamp={data.createdTimestamp}
+                                        startTime={timestamps.start}
+                                        endTime={timestamps.end}
+                                        createdTimestamp={createdTimestamp}
                                     />
                                 </Text>
                             </>

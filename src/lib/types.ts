@@ -1,27 +1,34 @@
 export interface Activity {
     name: string;
     type: number;
-    url: string;
-    details: string;
-    state: string;
+    url: string | null;
+    details: string | null;
+    state: string | null;
     applicationId: string;
     timestamps: {
         start: number;
         end: number;
-    };
+    } | null;
     party: {
         id: string;
         size: [number, number];
-    };
+    } | null;
     assets: {
         largeImage: string;
         largeText: string;
         smallImage: string;
         smallText: string;
-    };
+    } | null;
     flags: number;
-    emoji: string;
-    buttons: Array<any>;
+    emoji: {
+        animated: boolean;
+        name: string;
+        id: string;
+        createdTimestamp: number;
+        identifier: string;
+        imageURL: string;
+    } | null;
+    buttons: Array<any> | null;
     createdTimestamp: number;
 }
 
@@ -64,6 +71,11 @@ export interface Project {
     npm?: string;
     status: 'progress' | 'completed' | 'frozen' | 'archived' | 'abandoned';
     language: string;
+    tags?: Array<{
+        variant: "neutral" | "brand" | "accent" | "info" | "danger" | "warning" | "success" | "gradient";
+        size: "s" | "m" | "l";
+        label: string;
+    }>
 }
 
 export interface SteamResponse {

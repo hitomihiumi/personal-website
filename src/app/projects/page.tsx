@@ -6,11 +6,9 @@ import {
     Heading,
     Text,
     Flex,
-    Grid
 } from '@/once-ui/components';
 import {
     ProjectCard,
-    ProjectCardMobile,
     ComponentCarousel } from "@/components/components";
 import { Project } from "@/lib/types";
 
@@ -19,11 +17,28 @@ const list: Project[] = [
         key: 1,
         name: '@nmmty/lazycanvas',
         description: 'LazyCanvas provides you with classes and methods to interact with @napi-rs/canvas more easily.',
-        image: '/trademark/icon.svg',
+        image: 'https://raw.githubusercontent.com/NMMTY/LazyCanvas/6a9c4163f7e72ab9b2bf006e6b26d78b1869607e/resources/logo.svg',
         github: 'https://github.com/NMMTY/LazyCanvas',
         npm: 'https://www.npmjs.com/package/@nmmty/lazycanvas',
         status: 'progress',
-        language: 'TypeScript'
+        language: 'TypeScript',
+        tags: [
+            {
+                variant: 'info',
+                size: 's',
+                label: 'npm'
+            },
+            {
+                variant: 'neutral',
+                size: 's',
+                label: 'canvas'
+            },
+            {
+                variant: 'neutral',
+                size: 's',
+                label: 'napi-rs'
+            }
+        ]
     },
     {
         key: 2,
@@ -33,7 +48,24 @@ const list: Project[] = [
         github: 'https://github.com/hitomihiumi/filewatcher',
         npm: 'https://www.npmjs.com/package/@hitomihiumi/filewatcher',
         status: 'progress',
-        language: 'TypeScript'
+        language: 'TypeScript',
+        tags: [
+            {
+                variant: 'info',
+                size: 's',
+                label: 'npm'
+            },
+            {
+                variant: 'neutral',
+                size: 's',
+                label: 'file'
+            },
+            {
+                variant: 'neutral',
+                size: 's',
+                label: 'watcher'
+            }
+        ]
     },
     {
         key: 3,
@@ -43,7 +75,19 @@ const list: Project[] = [
         github: 'https://github.com/hitomihiumi/micro-docgen',
         npm: 'https://www.npmjs.com/package/@hitomihiumi/micro-docgen',
         status: 'progress',
-        language: 'TypeScript'
+        language: 'TypeScript',
+        tags: [
+            {
+                variant: 'info',
+                size: 's',
+                label: 'npm'
+            },
+            {
+                variant: 'neutral',
+                size: 's',
+                label: 'docgen'
+            }
+        ]
     },
     {
         key: 4,
@@ -53,7 +97,19 @@ const list: Project[] = [
         github: 'https://github.com/hitomihiumi/colors.ts',
         npm: 'https://www.npmjs.com/package/@hitomihiumi/colors.ts',
         status: 'completed',
-        language: 'TypeScript'
+        language: 'TypeScript',
+        tags: [
+            {
+                variant: 'info',
+                size: 's',
+                label: 'npm'
+            },
+            {
+                variant: 'neutral',
+                size: 's',
+                label: 'colors'
+            }
+        ]
     }
 ]
 
@@ -68,10 +124,9 @@ export default function Home() {
                 horizontal={'center'}
                 vertical={'center'}>
                 <Flex
-                    //@ts-ignore
-                    hide={'m' || 's'}
                     direction={'column'}
                     gap={'l'}
+                    horizontal={'center'}
                 >
                     <Flex
                         fillWidth
@@ -85,100 +140,17 @@ export default function Home() {
                         <Text
                             variant={'body-default-xl'}
                             onBackground={'neutral-weak'}
-                            paddingX={'xl'}
-                            align={'center'}>
-                            Here is a partial list of my projects, some are no longer in development and some are waiting to be replaced.
-                        </Text>
-                    </Flex>
-                    <Grid
-                        gap={'l'}
-                        columns={2}
-                        paddingX={'l'}
-                    >
-                        {list.map((item) => {
-                            return (
-                                <ProjectCard
-                                    key={item.key}
-                                    data={item}
-                                />
-                            )
-                        })}
-                    </Grid>
-                </Flex>
-                <Flex
-                    show={'m'}
-                    hide={'s'}
-                    direction={'column'}
-                    horizontal={'center'}
-                    fillWidth
-                    gap={'l'}
-                >
-                    <Flex
-                        fillWidth
-                        paddingX={'m'}
-                        horizontal={'center'}
-                        vertical={'center'}
-                        gap={'m'}
-                        direction={'column'}
-                    >
-                        <Heading variant={'display-strong-s'}>Projects</Heading>
-                        <Text
-                            variant={'body-default-l'}
-                            onBackground={'neutral-weak'}
-                            paddingX={'xl'}
                             align={'center'}>
                             Here is a partial list of my projects, some are no longer in development and some are waiting to be replaced.
                         </Text>
                     </Flex>
                     <Flex
-                        direction={'column'}
-                        horizontal={'center'}
-                        gap={'l'}>
+                        fit
+                    >
                         <ComponentCarousel>
                             {list.map((item) => {
                                 return (
                                     <ProjectCard
-                                        key={item.key}
-                                        data={item}
-                                    />
-                                )
-                            })}
-                        </ComponentCarousel>
-                    </Flex>
-                </Flex>
-                <Flex
-                    show={'s'}
-                    direction={'column'}
-                    horizontal={'center'}
-                    fillWidth
-                    gap={'l'}
-                >
-                    <Flex
-                        fillWidth
-                        paddingX={'m'}
-                        horizontal={'center'}
-                        vertical={'center'}
-                        gap={'m'}
-                        direction={'column'}
-                    >
-                        <Heading variant={'heading-strong-xl'}>Projects</Heading>
-                        <Text
-                            variant={'body-default-m'}
-                            onBackground={'neutral-weak'}
-                            paddingX={'xl'}
-                            align={'center'}>
-                            Here is a partial list of my projects, some are no longer in development and some are waiting to be replaced.
-                        </Text>
-                    </Flex>
-                    <Flex
-                        direction={'column'}
-                        horizontal={'center'}
-                        gap={'l'}>
-                        <ComponentCarousel
-                        >
-                            {list.map((item) => {
-                                return (
-                                    <ProjectCardMobile
                                         key={item.key}
                                         data={item}
                                     />

@@ -1,16 +1,16 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-
 import {
     Flex,
     Text,
     SmartImage,
     Line,
     IconButton,
-    Icon
+    Icon, Heading, Tag
 } from "@/once-ui/components";
 import { Project } from "@/lib/types";
+
+import styles from "@/components/components/ProjectCard.module.scss";
 
 export interface ProjectCardProps {
     data: Project;
@@ -24,78 +24,81 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     return (
         <>
             <Flex
-                maxWidth={36}
-                maxHeight={16}
-                minWidth={36}
-                fitHeight
-                radius={'l-4'}
-                background={'overlay'}
-                border={'neutral-alpha-medium'}
+                fillHeight
+                fillWidth
                 direction={'column'}
+                background={"overlay"}
+                border={"neutral-alpha-medium"}
+                radius={'l'}
+                className={styles.base}
             >
                 <Flex
-                    padding={'xs'}
-                    paddingX={'m'}
-                    gap={'s'}
+                    direction={'column'}
                 >
-                    <Flex
-                        fillWidth
-                        direction={'row'}
-                        gap={'s'}
-                        vertical={'space-between'}
-                    >
-                        <Flex
-                            direction={'column'}
-                            gap={'xs'}
-                        >
-                            <Text variant="body-strong-xl">
-                                {data.name}
-                            </Text>
-                            <Text
-                                variant="body-default-m"
-                                onBackground="neutral-weak">
-                                {data.description}
-                            </Text>
-                        </Flex>
-                        <SmartImage
-                            sizes={'128px'}
-                            fillWidth
-                            maxWidth={7}
-                            aspectRatio={'1 / 1'}
-                            src={data.image}
-                        />
-                    </Flex>
+                    <SmartImage src={data.image}
+                                aspectRatio={"16 / 9"}
+                                fill
+                                maxHeight={'160'}
+                                position={'relative'}
+                                radius={'m'}
+                    />
+                    <Line
+                        background={'neutral-alpha-medium'}
+                        vert={false}
+                    />
                 </Flex>
-                <Line background={'neutral-alpha-medium'} />
                 <Flex
-                    padding={'xs'}
-                    paddingX={'m'}
-                    gap={'s'}
-                    direction={'row'}
-                    horizontal={'space-between'}
-                    vertical={'center'}
-                    >
+                    padding={'8'}
+                    gap={'4'}
+                    direction={'column'}
+                    fillHeight
+                >
+                    {data.tags && (
+                        <>
+                            <Flex
+                                fit
+                                gap={'4'}
+                            >
+                                {data.tags.map((tag, index) => (
+                                    <Tag
+                                        key={index}
+                                        variant={tag.variant}
+                                        size={tag.size}
+                                        label={tag.label}
+                                        textVariant={'body-default-s'}
+                                    />
+                                ))}
+                            </Flex>
+                        </>
+                    )}
                     <Flex
-                        gap={'s'}>
-                        <Icon
-                            name={'code'}
-                            size={'xs'}
-                            onBackground={'neutral-weak'}
-                        />
-                        <Text
-                            onBackground={'neutral-weak'}
-                            variant={'body-default-s'}
+                        padding={'4'}
+                        gap={'4'}
+                        direction={'column'}
+                        fillHeight
+                    >
+                        <Heading
+                            variant={'heading-strong-m'}
                         >
-                            {statusString}
+                            {data.name}
+                        </Heading>
+                        <Text
+                            variant="body-default-m"
+                            onBackground="neutral-weak">
+                            {data.description}
                         </Text>
                     </Flex>
                     <Flex
-                        gap={'xs'}>
-                        <IconButton
-                            href={data.github}
-                            icon={'github'}
-                            variant={'secondary'}
-                        />
+                        gap={'4'}
+
+                    >
+                        {data.github && (
+                            <IconButton
+                                href={data.github}
+                                icon={'github'}
+                                variant={'secondary'}
+                            />
+                        )}
                         {data.website && (
                             <IconButton
                                 href={data.website}
@@ -111,134 +114,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                             />
                         )}
                     </Flex>
-                    <Flex
-                        gap={'s'}>
-                        <Icon
-                            name={data.language.toLowerCase()}
-                            size={'xs'}
-                            onBackground={'neutral-weak'}
-                        />
-                        <Text
-                            onBackground={'neutral-weak'}
-                            variant={'body-default-s'}
-                        >
-                            {data.language}
-                        </Text>
-                    </Flex>
                 </Flex>
             </Flex>
         </>
     );
 };
-
-export const ProjectCardMobile: React.FC<ProjectCardProps> = ({
-    data
-}) => {
-    let statusString = data.status === 'progress' ? 'In Progress' : (data.status === 'completed' ? 'Completed' : (data.status === 'frozen' ? 'Frozen' : (data.status === 'archived' ? 'Archived' : 'Abandoned')));
-
-    return (
-        <>
-            <Flex
-                maxWidth={24}
-                minWidth={24}
-                radius={'l-4'}
-                background={'overlay'}
-                border={'neutral-alpha-medium'}
-                direction={'column'}
-            >
-                <Flex
-                    padding={'s'}
-                    paddingX={'m'}
-                    gap={'s'}
-                >
-                    <Flex
-                        fillWidth
-                        fillHeight
-                        direction={'row'}
-                        gap={'s'}
-                        vertical={'space-between'}
-                    >
-                        <Flex
-                            direction={'column'}
-                            gap={'xs'}
-                        >
-                            <Text variant="body-strong-xl">
-                                {data.name}
-                            </Text>
-                            <Text
-                                variant="body-default-m"
-                                onBackground="neutral-weak">
-                                {data.description}
-                            </Text>
-                        </Flex>
-                    </Flex>
-                </Flex>
-                <Flex
-                    direction={'column'}
-                    vertical={'end'}
-                >
-                    <Line background={'neutral-alpha-medium'} />
-                    <Flex
-                        padding={'s'}
-                        paddingX={'m'}
-                        gap={'s'}
-                        direction={'row'}
-                        horizontal={'space-between'}
-                        vertical={'center'}
-                    >
-                        <Flex
-                            gap={'s'}>
-                            <Icon
-                                name={'code'}
-                                size={'xs'}
-                                onBackground={'neutral-weak'}
-                            />
-                            <Text
-                                onBackground={'neutral-weak'}
-                                variant={'body-default-s'}
-                            >
-                                {statusString}
-                            </Text>
-                        </Flex>
-                        <Flex
-                            gap={'xs'}>
-                            <IconButton
-                                href={data.github}
-                                icon={'github'}
-                                variant={'secondary'}
-                            />
-                            {data.website && (
-                                <IconButton
-                                    href={data.website}
-                                    icon={'document'}
-                                    variant={'secondary'}
-                                />
-                            )}
-                            {data.npm && (
-                                <IconButton
-                                    href={data.npm}
-                                    icon={'npm'}
-                                    variant={'secondary'}
-                                />
-                            )}
-                        </Flex>
-                        <Flex
-                            gap={'s'}>
-                            <Icon
-                                name={data.language.toLowerCase()}
-                                size={'xs'}
-                                onBackground={'neutral-weak'}
-                            />
-                            <Text
-                                onBackground={'neutral-weak'}
-                                variant={'body-default-s'}
-                            >
-                                {data.language}
-                            </Text>
-                        </Flex>
-                    </Flex>
-                </Flex>
-            </Flex>
-        </>
-    );
-}

@@ -53,7 +53,8 @@ import {
     FaYoutube,
     FaTelegram,
     FaCode,
-    FaNpm
+    FaNpm,
+    FaCat
 } from "react-icons/fa6";
 
 import {
@@ -123,6 +124,7 @@ export const iconLibrary: Record<string, IconType> = {
     npm: FaNpm,
     send: RiSendPlaneFill,
     socialShare: IoShareSocialSharp,
+    cat: FaCat
 };
 
 export type IconLibrary = typeof iconLibrary;
