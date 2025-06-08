@@ -2,7 +2,7 @@
 
 import React, { forwardRef } from "react";
 
-import { Skeleton, Icon, Text, StatusIndicator, Flex, SmartImage } from "@/once-ui/components";
+import { Skeleton, Icon, Text, StatusIndicator, Flex, Media } from "@/once-ui/components";
 import styles from "./AvatarWFrame.module.scss";
 
 interface AvatarWFrameProps extends React.ComponentProps<typeof Flex> {
@@ -76,7 +76,7 @@ const AvatarWFrame = forwardRef<HTMLDivElement, AvatarWFrameProps>(
             if (src) {
                 return (
                     <>
-                        <SmartImage
+                        <Media
                             src={src}
                             alt="Avatar"
                             fill
@@ -89,7 +89,7 @@ const AvatarWFrame = forwardRef<HTMLDivElement, AvatarWFrameProps>(
                             {...rest}
                         />
                         {frame && (
-                            <SmartImage
+                            <Media
                                 src={frame}
                                 fill
                                 alt="Frame"

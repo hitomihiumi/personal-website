@@ -1,0 +1,13 @@
+.white {
+  color: var(--static-white);
+}
+
+.contentFlex {
+  gap: var(--static-space-24);
+}
+
+@media (--s) {
+  .contentFlex {
+    gap: var(--static-space-4);
+  }
+}

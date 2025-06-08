@@ -29,7 +29,7 @@ const ButtonMenu: React.FC<ButtonMenuProps> = ({
             minWidth={minWidth}
             maxWidth={maxWidth}
             minHeight={minHeight}
-            floatingPlacement={'bottom'}
+            placement={'bottom'}
             style={{
                 borderRadius: "var(--radius-full)",
             }}

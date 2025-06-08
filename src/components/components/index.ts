@@ -7,3 +7,6 @@ export * from './ButtonMenu';
 export * from './Header';
 export * from './Presence';
 export * from './ProjectCard';
+export * from './ThemeToggle';
+export * from './Footer';
+export * from './SteamProfile';

@@ -21,12 +21,8 @@ module.exports = {
             },
         ],
         [
-            "tailwindcss",
-            {}
-        ],
-        [
             "autoprefixer",
             {}
         ]
     ]
-};
+};``

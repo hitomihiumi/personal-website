@@ -18,6 +18,22 @@ export type StaticSpacingToken =
   | "128"
   | "160";
 
+export const schemes = [
+  "blue",
+  "aqua",
+  "magenta",
+  "pink",
+  "yellow",
+  "orange",
+  "red",
+  "moss",
+  "green",
+  "emerald",
+  "cyan",
+  "violet",
+  "indigo",
+];
+
 export type Schemes =
   | "blue"
   | "indigo"
@@ -40,6 +56,8 @@ export type ResponsiveSpacingToken = TShirtSizes;
 export type ShadowSize = TShirtSizes;
 
 export type SpacingToken = StaticSpacingToken | ResponsiveSpacingToken;
+
+export type opacity = 0 | 10 | 20 | 30 | 40 | 50 | 60 | 70 | 80 | 90 | 100;
 
 export type ColorScheme =
   | "neutral"

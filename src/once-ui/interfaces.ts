@@ -4,6 +4,7 @@ import {
   ColorWeight,
   flex,
   gridColumns,
+  opacity,
   RadiusNest,
   RadiusSize,
   ShadowSize,
@@ -54,6 +55,7 @@ export interface TextProps<T extends ElementType = "span"> extends HTMLAttribute
   wrap?: CSSProperties["textWrap"];
   size?: TextSize;
   weight?: TextWeight;
+  truncate?: boolean;
 }
 
 export interface SizeProps extends HTMLAttributes<HTMLDivElement> {
@@ -167,7 +169,7 @@ export interface DisplayProps extends HTMLAttributes<HTMLDivElement> {
     | "macro-short"
     | "macro-medium"
     | "macro-long";
-  opacity?: 0 | 10 | 20 | 30 | 40 | 50 | 60 | 70 | 80 | 90 | 100;
+  opacity?: opacity;
   zIndex?: -1 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
   dark?: boolean;
   light?: boolean;

@@ -42,15 +42,19 @@ export default function Home() {
 
     return (
         <Flex
-            fillWidth
+            fill
             paddingX="l"
-            paddingY="xl"
-            maxWidth={'m'}
+            paddingY="l"
             direction="column"
-            horizontal={'center'}>
+            gap={'24'}
+            horizontal={'center'}
+            vertical={'center'}>
             <Flex
+                fillWidth
                 direction="row"
-                mobileDirection={'column'}>
+                mobileDirection={'column'}
+                horizontal={'center'}
+            >
                 <AvatarSection
                     size={'xl'}
                     src={data?.avatarURL}

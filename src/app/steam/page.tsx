@@ -3,19 +3,27 @@
 import React, {useEffect} from 'react';
 
 import {
-    Heading,
-    Text,
-    Flex, 
-    Column, 
-    SmartImage, 
-    Button
+    Flex,
+    Column,
+    Button,
+    Background,
+    Grid,
+    TiltFx,
+    Text, Accordion, CursorCard, Card
 } from '@/once-ui/components';
-import { AvatarWFrame, BlurFlex } from "@/components/components";
-import { ExtendedSteamProfile, ExtendedSteamUsers } from "@/lib/types";
+import {
+    ExtendedSteamGame,
+    ExtendedSteamProfile,
+    ExtendedSteamResponse,
+    ExtendedSteamUsers
+} from "@/lib/types";
 import styles from "@/components/steam/page.module.scss";
+
+import {GameCard, SteamProfile} from "@/components";
 
 export default function Home() {
     const [data, setData] = React.useState<ExtendedSteamProfile>();
+    const [recentlyPlayed, setRecentlyPlayed] = React.useState<ExtendedSteamGame[]>();
 
     useEffect(() => {
         const cacheKey = 'user-76561198904028626';
@@ -36,6 +44,27 @@ export default function Home() {
                 setData(res.response.players[0]);
                 localStorage.setItem(cacheKey, JSON.stringify({ timestamp: now, data: res.response.players[0] }));
             });
+    }, []);
+
+    useEffect(() => {
+        const cacheKey = 'user-recently-76561198904028626';
+        const cached = localStorage.getItem(cacheKey);
+        const now = Date.now();
+
+        if (cached) {
+            const { timestamp, data } = JSON.parse(cached);
+            if (now - timestamp < 6000_000) {
+                setRecentlyPlayed(data);
+                return;
+            }
+        }
+
+        fetch('https://api.hitomihiumi.xyz/v2/steam/user/76561198904028626/games/recently')
+            .then(res => res.json() as Promise<ExtendedSteamResponse>)
+            .then(res => {
+                setRecentlyPlayed(res.response.games)
+                localStorage.setItem(cacheKey, JSON.stringify({ timestamp: now, data: res.response.games }));
+            })
     }, []);
 
     return (
@@ -60,122 +89,127 @@ export default function Home() {
                         fillWidth
                         className={styles.baseColumn}
                         maxWidth={'s'}
+                        gap={'s'}
                     >
+                        <SteamProfile
+                            profileData={data}/>
                         <Flex
-                            borderWidth={2}
-                            radius={'xl'}
-                            overflow={'hidden'}
-                            position="relative"
+                            fillWidth
                             horizontal={'center'}
+                            direction={'column'}
+                            gap={'s'}
                         >
-                            <SmartImage
-                                position={'absolute'}
-                                objectFit={'cover'}
-                                zIndex={-1}
-                                src={data?.background ? data.background : ''}
-                                isLoading={!data?.background}
-                            />
-                            <BlurFlex
-                                blurAmount={20}
-                                blurColor="rgba(0, 0, 0, 0.4)"
-                                blurFade={0.8}
+                            <Flex
+                                gap={'24'}
                             >
-                                <Flex
+                                <Button
+                                    variant={'secondary'}
+                                    prefixIcon={'steam'}
+                                    size={'m'}
+                                    label={'Steam Profile'}
+                                    href={'https://steamcommunity.com/id/Fan_Doctor_Who_Fan/'}
+                                    target={'_blank'}
+                                />
+                            </Flex>
+
+                            {recentlyPlayed && (
+                                <Column
                                     fillWidth
-                                    fillHeight
-                                    horizontal={'center'}
-                                    vertical={'center'}
-                                    className={styles.contentFlex}
-                                    padding={'s'}
+                                    maxWidth={'s'}
+                                    position="relative"
                                 >
-                                    <AvatarWFrame
-                                        size={'xl'}
-                                        src={data ? data.avatarfull : ''}
-                                        frame={data ? data.frame : ''}
-                                    />
-                                    <Flex
-                                        fillHeight
-                                        gap="12"
-                                        direction={'column'}
-                                        horizontal={'start'}
-                                    >
-                                        <Flex
-                                            direction={'column'}
-                                        >
-                                            <Text
-                                                variant={'display-strong-s'}
-                                                className={styles.white}
-                                            >{data ? data.personaname : ''}</Text>
-                                            <Text
-                                                variant={'body-strong-xl'}
-                                                className={styles.white}
-                                            >{data ? data.realname : ''}</Text>
-                                        </Flex>
-                                        <Flex
+                                    <Accordion title={'Recently Played'}>
+                                        <Column
                                             fillWidth
+                                            fillHeight
+                                            radius="xl"
+                                            overflow="hidden"
+                                            position="relative"
+                                            border="neutral-alpha-weak"
                                         >
-                                            <Flex
+                                            <Background
+                                                mask={{
+                                                    x: 0,
+                                                    y: 100,
+                                                    radius: 100,
+                                                }}
+                                                position="absolute"
+                                                lines={{
+                                                    display: true,
+                                                    opacity: 50,
+                                                    size: '20',
+                                                    thickness: 1,
+                                                    angle: 135,
+                                                    color: "brand-solid-strong"
+                                                }}
+                                                zIndex={-1}
+                                            />
+                                            <Background
+                                                mask={{
+                                                    x: 0,
+                                                    y: 100,
+                                                    radius: 100,
+                                                }}
+                                                position="absolute"
+                                                gradient={{
+                                                    display: true,
+                                                    opacity: 100,
+                                                    height: 100,
+                                                    width: 100,
+                                                    tilt: 0,
+                                                    x: 100,
+                                                    y: 0,
+                                                    colorStart: "scheme-aqua-600",
+                                                    colorEnd: "page-background",
+                                                }}
+                                                zIndex={-1}
+                                            />
+                                            <Column
                                                 fillWidth
-                                                gap={'4'}
+                                                fillHeight
                                                 horizontal={'center'}
-                                                direction={'column'}
+                                                vertical={'center'}
+                                                paddingY={'m'}
+                                                gap={'32'}
                                             >
-                                                {data?.locstatecode && (
-                                                    <Flex
-                                                        fillWidth
-                                                        fillHeight
+                                                <Flex
+                                                    fillWidth
+                                                    gap={'24'}
+                                                    horizontal={'center'}
+                                                    vertical={'center'}
+                                                    direction={'column'}
+                                                >
+                                                    <Text
+                                                        variant={'body-strong-xl'}
+                                                        onBackground={'neutral-strong'}
+                                                    >Recently Played</Text>
+                                                    <Grid
+                                                        columns={'4'}
                                                         gap={'8'}
                                                     >
-                                                        <SmartImage
-                                                            src={`/country/${data.loccountrycode?.toLowerCase()}.svg`}
-                                                            fill
-                                                            maxWidth={'24'}
-                                                            maxHeight={'24'}
-                                                            minHeight={'24'}
-                                                            minWidth={'24'}
-                                                            radius={'full'}
-                                                            alt={data.loccountrycode}
-                                                            sizes={'20px'}
-                                                        />
-                                                        <Text
-                                                            variant={'body-strong-l'}
-                                                            className={styles.white}
-                                                        >
-                                                            {data ? data.loccountrycode : ''}
-                                                        </Text>
-                                                    </Flex>
-                                                )}
-                                                {data?.level && (
-                                                    <Flex
-                                                        fillWidth
-                                                    >
-                                                        <Text
-                                                            variant={'body-strong-l'}
-                                                            className={styles.white}
-                                                        >
-                                                            Level {data ? data.level : ''}
-                                                        </Text>
-                                                    </Flex>
-                                                )}
-                                            </Flex>
-                                        </Flex>
-                                    </Flex>
-                                </Flex>
-                            </BlurFlex>
+                                                        {recentlyPlayed.map((game: ExtendedSteamGame) => {
+                                                            return (
+                                                                <TiltFx
+                                                                    key={game.appid}
+                                                                >
+                                                                    <GameCard
+                                                                        key={game.appid}
+                                                                        size={'xl'}
+                                                                        data={game}
+                                                                    />
+                                                                </TiltFx>
+                                                            )
+                                                        })}
+                                                    </Grid>
+                                                </Flex>
+                                            </Column>
+                                        </Column>
+                                    </Accordion>
+
+                                </Column>
+                            )}
                         </Flex>
                     </Column>
-                    <Flex
-                        gap={'24'}
-                    >
-                        <Button
-                            variant={'secondary'}
-                            prefixIcon={'steam'}
-                            size={'m'}
-                            label={'Steam Profile'}
-                            href={'https://steamcommunity.com/id/Fan_Doctor_Who_Fan/'}
-                            target={'_blank'}
-                        />
-                    </Flex>
                 </Flex>
             </Flex>
         </>

@@ -69,15 +69,19 @@ export default function Home() {
 
     return (
         <Flex
-            fillWidth
+            fill
             paddingX="l"
-            paddingY="xl"
-            maxWidth={'m'}
+            paddingY="l"
             direction="column"
-            horizontal={'center'}>
+            gap={'24'}
+            horizontal={'center'}
+            vertical={'center'}>
             <Flex
+                fillWidth
                 direction="row"
-                mobileDirection={'column'}>
+                mobileDirection={'column'}
+                horizontal={'center'}
+            >
                 <AvatarSection
                     size={'xl'}
                     src={data?.avatarURL}
@@ -88,8 +92,8 @@ export default function Home() {
                         direction={'column'}
                         horizontal={'center'}>
                         <ButtonMenu
-                            prefixIcon={'socialShare'}
-                            label={'Socials'}
+                            prefixIcon={'clipboard'}
+                            label={'Utils'}
                             size={'s'}
                             dropdown={
                             <>
@@ -98,54 +102,6 @@ export default function Home() {
                                     gap={'2'}
                                     padding={'4'}
                                     horizontal={'space-between'}>
-                                    <Button
-                                        fillWidth
-                                        label={'Github'}
-                                        prefixIcon={'github'}
-                                        href={'https://github.com/hitomihiumi'}
-                                        variant={'tertiary'}
-                                        size={'s'}
-                                        target={'_blank'}
-                                    />
-                                    <Button
-                                        fillWidth
-                                        label={'Telegram'}
-                                        prefixIcon={'telegram'}
-                                        href={'https://t.me/tutachyota'}
-                                        variant={'tertiary'}
-                                        size={'s'}
-                                        target={'_blank'}
-                                    />
-                                    <Button
-                                        fillWidth
-                                        label={'Steam'}
-                                        prefixIcon={'steam'}
-                                        href={'https://steamcommunity.com/id/Fan_Doctor_Who_Fan/'}
-                                        variant={'tertiary'}
-                                        size={'s'}
-                                        target={'_blank'}
-                                    />
-                                    <Button
-                                        fillWidth
-                                        label={'Youtube'}
-                                        prefixIcon={'youtube'}
-                                        href={'https://www.youtube.com/@hitomihiumi'}
-                                        variant={'tertiary'}
-                                        size={'s'}
-                                        target={'_blank'}
-                                    />
-                                    <Button
-                                        fillWidth
-                                        label={'Discord'}
-                                        prefixIcon={'discord'}
-                                        href={'https://discord.com/users/991777093312585808'}
-                                        variant={'tertiary'}
-                                        size={'s'}
-                                        target={'_blank'}
-                                    />
-                                    <Line
-                                        vert={false}
-                                        background={'neutral-alpha-medium'}/>
                                     <Button
                                         fillWidth
                                         label={'Find avatar?'}
@@ -165,7 +121,6 @@ export default function Home() {
                                         href={'/meow'}
                                         variant={'tertiary'}
                                         size={'s'}
-                                        target={'_blank'}
                                     />
                                 </Flex>
                             </>}
@@ -204,11 +159,6 @@ export default function Home() {
                                 variant={'body-default-l'}
                             >
                                 Just another JS/TS developer. Doing my own projects, writing libraries, writing bots and trying to make websites.
-                            </Text>
-                            <Text
-                                variant={'body-default-l'}
-                            >
-                                I suffer from procrastination and problems with concentration.
                             </Text>
                         </Flex>
                     </Flex>

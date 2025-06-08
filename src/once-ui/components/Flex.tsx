@@ -63,7 +63,7 @@ const Flex = forwardRef<HTMLDivElement, ComponentProps>(
       marginX,
       marginY,
       gap,
-      position,
+      position = "relative",
       center,
       width,
       height,

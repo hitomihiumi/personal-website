@@ -5,7 +5,7 @@ import React, {useEffect} from 'react';
 import {
     Heading,
     Text,
-    Flex,
+    Flex, Grid,
 } from '@/once-ui/components';
 import {
     ProjectCard,
@@ -125,7 +125,7 @@ export default function Home() {
                 vertical={'center'}>
                 <Flex
                     direction={'column'}
-                    gap={'l'}
+                    gap={'m'}
                     horizontal={'center'}
                 >
                     <Flex
@@ -133,7 +133,7 @@ export default function Home() {
                         paddingX={'m'}
                         horizontal={'center'}
                         vertical={'center'}
-                        gap={'m'}
+                        gap={'xs'}
                         direction={'column'}
                     >
                         <Heading variant={'display-strong-s'}>Projects</Heading>
@@ -141,11 +141,12 @@ export default function Home() {
                             variant={'body-default-xl'}
                             onBackground={'neutral-weak'}
                             align={'center'}>
-                            Here is a partial list of my projects, some are no longer in development and some are waiting to be replaced.
+                            Here is a part of my projects, you can find the rest on my GitHub.
                         </Text>
                     </Flex>
                     <Flex
                         fit
+                        show={'l'}
                     >
                         <ComponentCarousel>
                             {list.map((item) => {
@@ -157,6 +158,23 @@ export default function Home() {
                                 )
                             })}
                         </ComponentCarousel>
+                    </Flex>
+                    <Flex
+                        hide={'m'}>
+                        <Grid
+                            fit
+                            gap={'12'}
+                            columns={2}
+                        >
+                            {list.map((item) => {
+                                return (
+                                    <ProjectCard
+                                        key={item.key}
+                                        data={item}
+                                    />
+                                )
+                            })}
+                        </Grid>
                     </Flex>
                 </Flex>
             </Flex>

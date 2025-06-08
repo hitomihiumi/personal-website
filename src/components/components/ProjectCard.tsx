@@ -3,7 +3,7 @@
 import {
     Flex,
     Text,
-    SmartImage,
+    Media,
     Line,
     IconButton,
     Icon, Heading, Tag
@@ -35,7 +35,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 <Flex
                     direction={'column'}
                 >
-                    <SmartImage src={data.image}
+                    <Media src={data.image}
                                 aspectRatio={"16 / 9"}
                                 fill
                                 maxHeight={'160'}

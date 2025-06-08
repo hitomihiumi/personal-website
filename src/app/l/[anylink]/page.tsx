@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { redirects } from "@/app/resources/config";
+import { redirects } from "@/app/resources/content";
 import { Heading } from "@/once-ui/components";
 
 export default function Page() {

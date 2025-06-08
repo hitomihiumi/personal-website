@@ -4,7 +4,7 @@ import "@/once-ui/tokens/index.scss";
 import classNames from "classnames";
 import { Metadata } from "next";
 
-import { baseURL, style, meta, og, schema } from "@/app/resources/config";
+import { baseURL, style, meta, og, schema } from "@/app/resources/once-ui.config";
 
 import {
 	Background,
@@ -12,9 +12,8 @@ import {
 	Flex,
 	ToastProvider,
 	ThemeProvider,
-	ThemeSwitcher
 } from "@/once-ui/components";
-import { Header } from "@/components/components"
+import { Header, Footer } from "@/components/components"
 import { Roboto_Mono, Nunito, Sora } from "next/font/google";
 
 import { Meta, Schema } from "@/once-ui/modules";
@@ -126,14 +125,14 @@ export default function RootLayout({
 			</head>
 			<ThemeProvider>
 				<ToastProvider>
-					<Column as="body" fillWidth  margin="0" padding="0">
+					<Column style={{ minHeight: "100vh" }} as="body" fillWidth  margin="0" padding="0">
 						<Background
 							style={{zIndex: '-1'}}
 							position="fixed"
 							mask={{
 								x: 0,
 								y: 0,
-								radius: 80,
+								radius: 90,
 							}}
 							gradient={{
 								display: true,
@@ -143,34 +142,31 @@ export default function RootLayout({
 								height: 125,
 								tilt: 10,
 								opacity: 50,
-								colorStart: `scheme-aqua-400`,
+								colorStart: `scheme-brand-300`,
 								colorEnd: "page-background",
 							}}
 							grid={{
 								display: true,
-								 color: `scheme-aqua-400`,
+								 color: `scheme-brand-600`,
+								width: '2.5rem',
+								height: '2.5rem',
 							}}
 						/>
-						<Column
-							fillHeight
+						<Flex fillWidth minHeight="16" hide="s"></Flex>
+						<Header />
+						<Flex
+							zIndex={0}
 							fillWidth
-							horizontal={'center'}
-							overflowY={'scroll'}
+							paddingY="l"
+							paddingX="l"
+							horizontal="center"
+							flex={1}
 						>
-							<Flex
-								fillWidth
-								fillHeight
-								vertical={'center'}
-								horizontal={'center'}
-								paddingY={'xs'}
-								direction={'column'}
-							>
-								<Header/>
+							<Flex horizontal="center" fillWidth minHeight="0">
 								{children}
-								<ThemeSwitcher
-									className={styles.themeSwitcher}/>
 							</Flex>
-						</Column>
+						</Flex>
+						<Footer/>
 					</Column>
 				</ToastProvider>
 			</ThemeProvider>

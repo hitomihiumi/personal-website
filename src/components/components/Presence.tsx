@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import type { Activity } from "@/lib/types";
 
-import { Flex, Heading, Text, SmartImage } from "@/once-ui/components";
+import { Flex, Heading, Text, Media } from "@/once-ui/components";
 
 import styles from "@/components/components/Presence.module.scss";
 
@@ -111,7 +111,7 @@ export const Presence: React.FC<PresenceProps> = ({ data }) => {
                     padding={'12'}
                     gap={'16'}
                 >
-                    <SmartImage
+                    <Media
                         src={type === 4 ? emoji?.animated ? emoji?.imageURL.replace(/\.webp/g, '.gif') || '/images/game.png' : emoji?.imageURL || '/images/game.png' : getURL(assets?.largeImage as string) || '/images/game.png'}
                         aspectRatio={"1 / 1"}
                         alt={assets?.largeText || 'game'}
@@ -125,7 +125,7 @@ export const Presence: React.FC<PresenceProps> = ({ data }) => {
                     />
                     {assets?.smallImage && (
                         <>
-                            <SmartImage
+                            <Media
                                 src={getURL(assets.smallImage) || ''}
                                 aspectRatio={"1 / 1"}
                                 alt={assets.smallText || ''}

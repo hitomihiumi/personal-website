@@ -68,6 +68,7 @@ import {
 
 import { IoGridOutline, IoSend, IoShareSocialSharp } from "react-icons/io5";
 import { LuChevronsLeftRight } from "react-icons/lu";
+import {HiMoon, HiSun} from "react-icons/hi";
 
 export const iconLibrary: Record<string, IconType> = {
     chevronUp: HiChevronUp,
@@ -124,7 +125,9 @@ export const iconLibrary: Record<string, IconType> = {
     npm: FaNpm,
     send: RiSendPlaneFill,
     socialShare: IoShareSocialSharp,
-    cat: FaCat
+    cat: FaCat,
+    moon: HiMoon,
+    sun: HiSun,
 };
 
 export type IconLibrary = typeof iconLibrary;

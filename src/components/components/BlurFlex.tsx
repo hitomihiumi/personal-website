@@ -15,14 +15,6 @@ const BlurFlex = forwardRef<HTMLDivElement, BlurFlexProps & React.ComponentProps
     ({ blurAmount = 10, blurColor = "rgba(255, 255, 255, 0.1)", blurFade = 0, className, style, children, flexProps, ...props }, ref) => {
         const fadeIntensity = Math.max(0, Math.min(1, blurFade));
 
-        console.log('fadeIntensity', fadeIntensity);
-        console.log('maskImage', fadeIntensity
-            ? `radial-gradient(circle, rgba(0, 0, 0, ${1 - fadeIntensity}) 30%, rgba(0, 0, 0, 0) 90%)`
-            : undefined)
-        console.log('WebkitMaskImage', fadeIntensity
-            ? `radial-gradient(circle, rgba(0, 0, 0, ${1 - fadeIntensity}) 30%, rgba(0, 0, 0, 0) 90%)`
-            : undefined)
-
         return (
             <Flex
                 ref={ref}

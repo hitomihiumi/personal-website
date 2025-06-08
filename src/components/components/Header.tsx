@@ -3,10 +3,11 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { Flex, ToggleButton, Line } from "@/once-ui/components";
+import { Flex, ToggleButton, Line, Fade } from "@/once-ui/components";
 import styles from "@/components/components/Header.module.scss";
+import { ThemeToggle } from "@/components";
 
-import { routes } from "@/app/resources/config";
+import { routes } from "@/app/resources/once-ui.config";
 
 type TimeDisplayProps = {
     timeZone: string;
@@ -46,6 +47,8 @@ export const Header = () => {
 
     return (
         <>
+            <Fade hide="s" fillWidth position="fixed" height="80" zIndex={9} />
+            <Fade show="s" fillWidth position="fixed" bottom="0" to="top" height="80" zIndex={9} />
             <Flex
                 fitHeight
                 className={styles.position}
@@ -131,6 +134,8 @@ export const Header = () => {
                                     </Flex>
                                 </>
                             )}
+                            <Line background="neutral-alpha-medium" vert height={2} />
+                            <ThemeToggle />
                         </Flex>
                     </Flex>
                 </Flex>
