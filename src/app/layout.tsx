@@ -152,8 +152,7 @@ export default function RootLayout({
 								height: '2.5rem',
 							}}
 						/>
-						<Flex fillWidth minHeight="16" hide="s"></Flex>
-						<Header />
+						<Header/>
 						<Flex
 							zIndex={0}
 							fillWidth

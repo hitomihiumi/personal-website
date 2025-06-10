@@ -7,14 +7,14 @@ export const Footer = () => {
 
     return (
         <>
-            <Fade hide="s" fillWidth position="fixed" bottom="0" to="top" height="80" zIndex={9} />
+
             <Flex
                 as="footer"
                 fillWidth
                 padding="8"
                 horizontal="center"
                 mobileDirection="column"
-                zIndex={9}
+                zIndex={8}
             >
                 <Flex
                     className={styles.mobile}

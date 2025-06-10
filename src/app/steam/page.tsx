@@ -9,7 +9,8 @@ import {
     Background,
     Grid,
     TiltFx,
-    Text, Accordion, CursorCard, Card
+    Text,
+    Accordion,
 } from '@/once-ui/components';
 import {
     ExtendedSteamGame,
@@ -19,7 +20,7 @@ import {
 } from "@/lib/types";
 import styles from "@/components/steam/page.module.scss";
 
-import {GameCard, SteamProfile} from "@/components";
+import { GameCard, SteamProfile, GameCardMobile } from "@/components";
 
 export default function Home() {
     const [data, setData] = React.useState<ExtendedSteamProfile>();
@@ -70,7 +71,7 @@ export default function Home() {
     return (
         <>
             <Flex
-                paddingX={'l'}
+                paddingX={'xs'}
                 direction={'column'}
                 vertical={'center'}
                 horizontal={'center'}
@@ -90,6 +91,7 @@ export default function Home() {
                         className={styles.baseColumn}
                         maxWidth={'s'}
                         gap={'s'}
+                        paddingY={'xl'}
                     >
                         <SteamProfile
                             profileData={data}/>
@@ -183,24 +185,46 @@ export default function Home() {
                                                         variant={'body-strong-xl'}
                                                         onBackground={'neutral-strong'}
                                                     >Recently Played</Text>
-                                                    <Grid
-                                                        columns={'4'}
-                                                        gap={'8'}
-                                                    >
-                                                        {recentlyPlayed.map((game: ExtendedSteamGame) => {
-                                                            return (
-                                                                <TiltFx
-                                                                    key={game.appid}
-                                                                >
-                                                                    <GameCard
+                                                   <Flex hide={'s'}>
+                                                       <Grid
+                                                           columns={'4'}
+                                                           gap={'8'}
+                                                       >
+                                                           {recentlyPlayed.map((game: ExtendedSteamGame) => {
+                                                               return (
+                                                                   <TiltFx
+                                                                       key={game.appid}
+                                                                   >
+                                                                       <GameCard
+                                                                           key={game.appid}
+                                                                           size={'xl'}
+                                                                           data={game}
+                                                                       />
+                                                                   </TiltFx>
+                                                               )
+                                                           })}
+                                                       </Grid>
+                                                   </Flex>
+                                                    <Flex show={'s'}>
+                                                        <Grid
+                                                            columns={'3'}
+                                                            gap={'8'}
+                                                        >
+                                                            {recentlyPlayed.map((game: ExtendedSteamGame) => {
+                                                                return (
+                                                                    <TiltFx
                                                                         key={game.appid}
-                                                                        size={'xl'}
-                                                                        data={game}
-                                                                    />
-                                                                </TiltFx>
-                                                            )
-                                                        })}
-                                                    </Grid>
+                                                                    >
+                                                                        <GameCardMobile
+                                                                            key={game.appid}
+                                                                            size={'xl'}
+                                                                            data={game}
+                                                                        />
+                                                                    </TiltFx>
+                                                                )
+                                                            })}
+                                                        </Grid>
+                                                    </Flex>
                                                 </Flex>
                                             </Column>
                                         </Column>

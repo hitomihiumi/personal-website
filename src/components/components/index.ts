@@ -10,3 +10,4 @@ export * from './ProjectCard';
 export * from './ThemeToggle';
 export * from './Footer';
 export * from './SteamProfile';
+export * from './GameCardMobile';

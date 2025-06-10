@@ -3,16 +3,15 @@
 import React, { forwardRef } from "react";
 
 import {Skeleton, Icon, Text, StatusIndicator, Flex, Media, Spinner} from "@/once-ui/components";
-import styles from "./GameCard.module.scss";
+import styles from "./GameCardMobile.module.scss";
 import { ExtendedSteamGame } from "@/lib/types";
 import { minutesToHours } from "@/lib/utils"
 
-interface GameCardProps extends React.ComponentProps<typeof Flex> {
+interface GameCardMobileProps extends React.ComponentProps<typeof Flex> {
     size?: "xs" | "s" | "m" | "l" | "xl";
     data: ExtendedSteamGame;
     loading?: boolean;
     empty?: boolean;
-    mobile?: boolean;
     statusIndicator?: {
         color: "green" | "yellow" | "red" | "gray";
     };
@@ -36,17 +35,13 @@ const statusIndicatorSizeMapping: Record<"xs" | "s" | "m" | "l" | "xl", "s" | "m
     xl: "l",
 };
 
-const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
+const GameCardMobile = forwardRef<HTMLDivElement, GameCardMobileProps>(
     ({ size = "m", data, loading, empty, statusIndicator, className, style, ...rest }, ref) => {
         const [active, setActive] = React.useState<boolean>(false);
         const isEmpty = empty || (!data);
 
-        const handleMouseEnter = () => {
-            setActive(true);
-        }
-
-        const handleMouseLeave = () => {
-            setActive(false);
+        const onTouch = () => {
+            setActive(!active );
         }
 
         if (loading) {
@@ -109,15 +104,13 @@ const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
                 position="relative"
                 cursor="interactive"
                 overflow={'hidden'}
-                onClick={() => window.open("https://store.steampowered.com/app/" + data.appid, "_blank")}
                 vertical="center"
                 horizontal="center"
                 border={'neutral-strong'}
                 radius={'m'}
                 style={style}
-                className={`${styles.avatar} ${styles[size]} ${styles.upload}} ${className || ""}`}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
+                className={`${styles.avatar} ${styles[size]} ${active ? styles.active : ""}} ${className || ""}`}
+                onTouchStart={onTouch}
                 {...rest}
             >
                 {renderContent()}
@@ -130,7 +123,7 @@ const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
                     />
                 )}
                 <Flex
-                    className={styles.upload}
+                    className={active ? styles.active : ""}
                     zIndex={1}
                     transition="micro-medium"
                     position="absolute"
@@ -160,7 +153,7 @@ const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
     },
 );
 
-GameCard.displayName = "GameCard";
+GameCardMobile.displayName = "GameCardMobile";
 
-export { GameCard };
-export type { GameCardProps };
+export { GameCardMobile };
+export type { GameCardMobileProps };
